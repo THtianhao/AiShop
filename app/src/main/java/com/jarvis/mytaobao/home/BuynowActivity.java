@@ -12,7 +12,6 @@ import com.zdp.aseo.content.AseoZdpAseo;
 
 
 /**
- * 确认订单界面
  * @author http://yecaoly.taobao.com
  *
  */
@@ -41,7 +40,7 @@ public class BuynowActivity extends Activity {
 		bt_ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				Toast.makeText(BuynowActivity.this, "暂无法支付", Toast.LENGTH_SHORT).show();
+				Toast.makeText(BuynowActivity.this, "", Toast.LENGTH_SHORT).show();
 			}
 		});
 		

@@ -33,7 +33,7 @@ public class Cart_F extends Fragment implements OnClickListener {
 	}
 
 	private void initView(View view) {
-		((TextView) view.findViewById(R.id.tv_top_txtTitle)).setText("�ҵĹ��ﳵ");
+		((TextView) view.findViewById(R.id.tv_top_txtTitle)).setText("我的购物车");
 
 		bt_cart_all = (TextView) view.findViewById(R.id.bt_cart_all);
 		bt_cart_low = (TextView) view.findViewById(R.id.bt_cart_low);
