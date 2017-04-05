@@ -48,7 +48,7 @@ public class Home_F extends Fragment {
 	/**存储首页轮播的界面*/
 	private ArrayList<View> allListView;
 	/**首页轮播的界面的资源*/
-	private int[] resId = { R.drawable.pager_m4, R.drawable.pager_m1, R.drawable.pager_m2, R.drawable.pager_m3, R.drawable.pager_m5};
+	private int[] resId = { R.drawable.pager_m5, R.drawable.pager_m3, R.drawable.pager_m2, R.drawable.pager_m1, R.drawable.pager_m4};
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

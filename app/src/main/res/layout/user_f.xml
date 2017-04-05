@@ -42,7 +42,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/imageView1"
-                        android:text="书屋"
+                        android:text="花屋"
                         android:textColor="@color/bg_White" />
 
                     <ImageView
