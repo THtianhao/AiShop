@@ -21,7 +21,6 @@ import com.javis.Adapter.Adapter_GridView;
 import com.zxing.activity.CaptureActivity;
 
 /**
- * 发现主界面
  * @author http://yecaoly.taobao.com
  *
  */
@@ -30,7 +29,6 @@ public class Discover_F extends Fragment {
 	private GridView my_gridView_app;
 	private Adapter_GridView adapter_GridView_life;
 	private Adapter_GridView adapter_GridView_app;
-	//资源文件
 	private int[] pic_path_life={R.drawable.find_g_1,R.drawable.find_g_2,R.drawable.find_g_3,R.drawable.find_g_4};
 	private int[] pic_path_app={R.drawable.find_g_5,R.drawable.find_g_6,R.drawable.find_g_7,R.drawable.find_g_8};
 	
@@ -59,7 +57,7 @@ public class Discover_F extends Fragment {
 		ll_game=(LinearLayout) view.findViewById(R.id.ll_dicover_game);
 		ll_game.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				Toast.makeText(getActivity(), "此功能暂未开放", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
 			}
 		});
     	my_gridView_life=(GridView)view.findViewById(R.id.gridView_find_life);
