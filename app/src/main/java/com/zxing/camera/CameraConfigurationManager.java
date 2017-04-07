@@ -1,18 +1,4 @@
-/*
- * Copyright (C) 2010 ZXing authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package com.zxing.camera;
 
@@ -45,9 +31,7 @@ final class CameraConfigurationManager {
     this.context = context;
   }
 
-  /**
-   * Reads, one time, values from the camera that are needed by the app.
-   */
+
   @SuppressWarnings("deprecation")
 void initFromCameraParameters(Camera camera) {
     Camera.Parameters parameters = camera.getParameters();
@@ -62,20 +46,15 @@ void initFromCameraParameters(Camera camera) {
     Log.d(TAG, "Camera resolution: " + screenResolution);
   }
 
-  /**
-   * Sets the camera up to take preview images which are used for both preview and decoding.
-   * We detect the preview format here so that buildLuminanceSource() can build an appropriate
-   * LuminanceSource subclass. In the future we may want to force YUV420SP as it's the smallest,
-   * and the planar Y can be used for barcode scanning without a copy in some cases.
-   */
+
   void setDesiredCameraParameters(Camera camera) {
     Camera.Parameters parameters = camera.getParameters();
     Log.d(TAG, "Setting preview size: " + cameraResolution);
     parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
     setFlash(parameters);
     setZoom(parameters);
-    //setSharpness(parameters);
-    //modify here
+
+
     camera.setDisplayOrientation(90);
     camera.setParameters(parameters);
   }
@@ -99,7 +78,7 @@ void initFromCameraParameters(Camera camera) {
   private static Point getCameraResolution(Camera.Parameters parameters, Point screenResolution) {
 
     String previewSizeValueString = parameters.get("preview-size-values");
-    // saw this on Xperia
+
     if (previewSizeValueString == null) {
       previewSizeValueString = parameters.get("preview-size-value");
     }
@@ -112,7 +91,7 @@ void initFromCameraParameters(Camera camera) {
     }
 
     if (cameraResolution == null) {
-      // Ensure that the camera resolution is a multiple of 8, as the screen may not be.
+
       cameraResolution = new Point(
           (screenResolution.x >> 3) << 3,
           (screenResolution.y >> 3) << 3);
@@ -182,17 +161,17 @@ void initFromCameraParameters(Camera camera) {
   }
 
   private void setFlash(Camera.Parameters parameters) {
-    // FIXME: This is a hack to turn the flash off on the Samsung Galaxy.
-    // And this is a hack-hack to work around a different value on the Behold II
-    // Restrict Behold II check to Cupcake, per Samsung's advice
-    //if (Build.MODEL.contains("Behold II") &&
-    //    CameraManager.SDK_INT == Build.VERSION_CODES.CUPCAKE) {
-    if (Build.MODEL.contains("Behold II") && CameraManager.SDK_INT == 3) { // 3 = Cupcake
+
+
+
+
+
+    if (Build.MODEL.contains("Behold II") && CameraManager.SDK_INT == 3) {
       parameters.set("flash-value", 1);
     } else {
       parameters.set("flash-value", 2);
     }
-    // This is the standard setting to turn the flash off that all devices should honor.
+
     parameters.set("flash-mode", "off");
   }
 
@@ -243,18 +222,18 @@ void initFromCameraParameters(Camera camera) {
           tenDesiredZoom -= tenDesiredZoom % tenZoomStep;
         }
       } catch (NumberFormatException nfe) {
-        // continue
+
       }
     }
 
-    // Set zoom. This helps encourage the user to pull back.
-    // Some devices like the Behold have a zoom parameter
+
+
     if (maxZoomString != null || motZoomValuesString != null) {
       parameters.set("zoom", String.valueOf(tenDesiredZoom / 10.0));
     }
 
-    // Most devices, like the Hero, appear to expose this zoom parameter.
-    // It takes on values like "27" which appears to mean 2.7x zoom
+
+
     if (takingPictureZoomMaxString != null) {
       parameters.set("taking-picture-zoom", tenDesiredZoom);
     }

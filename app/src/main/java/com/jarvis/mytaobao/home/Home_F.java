@@ -24,9 +24,7 @@ import com.javis.ab.view.AbOnItemClickListener;
 import com.javis.ab.view.AbSlidingPlayView;
 import com.zxing.activity.CaptureActivity;
 
-/**
- * @author http://yecaoly.taobao.com
- */
+
 public class Home_F extends Fragment {
 	private TextView tv_top_title;
 	private GridView gridView_classify;
@@ -37,8 +35,11 @@ public class Home_F extends Fragment {
 	private ImageView iv_shao;
 	private int[] pic_path_classify = { R.drawable.menu_guide_1, R.drawable.menu_guide_2, R.drawable.menu_guide_3, R.drawable.menu_guide_4, R.drawable.menu_guide_5, R.drawable.menu_guide_6, R.drawable.menu_guide_7, R.drawable.menu_guide_8 };
 	private int[] pic_path_hot = { R.drawable.menu_1, R.drawable.menu_2, R.drawable.menu_3, R.drawable.menu_4, R.drawable.menu_5, R.drawable.menu_6 };
+
+
 	private ArrayList<View> allListView;
-	private int[] resId = { R.drawable.pager_m5, R.drawable.pager_m3, R.drawable.pager_m2, R.drawable.pager_m1, R.drawable.pager_m4};
+
+	private int[] resId = { R.drawable.pager_m4, R.drawable.pager_m1, R.drawable.pager_m2, R.drawable.pager_m3, R.drawable.pager_m5};
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -22,11 +22,7 @@ import com.jarvis.mytaobao.user.User_F;
 import com.jarvis.mytaobaotest.R;
 import com.javis.mytools.IBtnCallListener;
 
-/**
- *
- * @author http://yecaoly.taobao.com
- * 
- */
+
 public class Main_FA extends FragmentActivity implements OnClickListener, IBtnCallListener {
 
 	private ImageView[] bt_menu = new ImageView[3];
@@ -35,10 +31,17 @@ public class Main_FA extends FragmentActivity implements OnClickListener, IBtnCa
 	private int[] select_on = { R.drawable.guide_home_on, R.drawable.guide_tfaccount_on, R.drawable.guide_discover_on, R.drawable.guide_cart_on, R.drawable.guide_account_on };
 	private int[] select_off = { R.drawable.bt_menu_0_select, R.drawable.bt_menu_1_select, R.drawable.bt_menu_2_select, R.drawable.bt_menu_3_select, R.drawable.bt_menu_4_select };
 
+
+
 	private Home_F home_F;
+
 	private Tao_F tao_F;
+
 	private Discover_F discover_F;
+
 	private Cart_F cart_F;
+
+
 	private User_F user_F;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class Main_FA extends FragmentActivity implements OnClickListener, IBtnCa
 		getSaveData();
 		initView();
 	}
+
 
 	private void getSaveData() {
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
@@ -155,17 +159,20 @@ public class Main_FA extends FragmentActivity implements OnClickListener, IBtnCa
 		}
 	}
 
+
 	public void addFragment(Fragment fragment) {
 		FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
 		ft.add(R.id.show_layout, fragment);
 		ft.commit();
 	}
 
+
 	public void removeFragment(Fragment fragment) {
 		FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
 		ft.remove(fragment);
 		ft.commit();
 	}
+
 
 	public void showFragment(Fragment fragment) {
 		FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
@@ -192,6 +199,7 @@ public class Main_FA extends FragmentActivity implements OnClickListener, IBtnCa
 
 	}
 
+
 	@Override
 	public void onBackPressed() 
 	{
@@ -200,6 +208,7 @@ public class Main_FA extends FragmentActivity implements OnClickListener, IBtnCa
 		intent.addCategory(Intent.CATEGORY_HOME);
 		startActivity(intent);
 	}
+
 
 	@SuppressWarnings("unused")
 	private IBtnCallListener btnCallListener;
@@ -214,8 +223,7 @@ public class Main_FA extends FragmentActivity implements OnClickListener, IBtnCa
 		super.onAttachFragment(fragment);
 	}
 
-	/**
-	 */
+
 	@Override
 	public void transferMsg() {
 		if (home_F == null) {

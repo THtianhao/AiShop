@@ -11,10 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/**
- *
- * @author http://yecaoly.taobao.com
- */
+
 public class Cart_F extends Fragment implements OnClickListener {
 	private TextView bt_cart_all, bt_cart_low, bt_cart_stock, bt_cart_edit;
 
@@ -124,20 +121,20 @@ public class Cart_F extends Fragment implements OnClickListener {
 		}
 	}
 
-	/** ���Fragment **/
+
 	public void addFragment(Fragment fragment) {
 		FragmentTransaction ft = this.getFragmentManager().beginTransaction();
 		ft.add(R.id.show_cart_view, fragment);
 		ft.commitAllowingStateLoss();
 	}
-	/** ɾ��Fragment **/
+
 	public void removeFragment(Fragment fragment) {
 		FragmentTransaction ft = this.getFragmentManager().beginTransaction();
 		ft.remove(fragment);
 		ft.commitAllowingStateLoss();
 	}
 
-	/** ��ʾFragment **/
+
 	public void showFragment(Fragment fragment) {
 		FragmentTransaction ft = this.getFragmentManager().beginTransaction();
 		if (allBaby_F != null) {

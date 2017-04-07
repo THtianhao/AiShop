@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 public class Adapter_ListView_tao extends BaseAdapter {
 	private Context context;
-	/**ͼƬ*/
+
 	private int[] picId={R.drawable.tao_3,R.drawable.detail_show_1,R.drawable.detail_show_2,R.drawable.detail_show_3,R.drawable.detail_show_4,R.drawable.detail_show_5,R.drawable.detail_show_6};
 	
 	

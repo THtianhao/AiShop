@@ -34,11 +34,7 @@ import com.javis.Adapter.Adapter_ListView_detail;
 import com.lesogo.cu.custom.ScaleView.HackyViewPager;
 import com.zdp.aseo.content.AseoZdpAseo;
 
-/**
- * ������Ʒ�������
- * @author http://yecaoly.taobao.com
- * 
- */
+
 public class BabyActivity extends FragmentActivity implements OnItemClickListener, OnClickListener {
 
 	NfcAdapter nfcAdapter;
@@ -48,15 +44,15 @@ public class BabyActivity extends FragmentActivity implements OnItemClickListene
 	private int[] resId = { R.drawable.detail_show_1, R.drawable.detail_show_2, R.drawable.detail_show_3, R.drawable.detail_show_4, R.drawable.detail_show_5, R.drawable.detail_show_6 };
 	private ListView listView;
 	private ImageView iv_baby_collection;
-	/**������Ʒ������Ϣ����*/
+
 	private BabyPopWindow popWindow;
-	/** �������ñ������� */
+
 	private LinearLayout all_choice_layout = null;
-	/**�ж��Ƿ�������������ť*/
+
 	boolean isClickBuy = false;
-	/**�Ƿ�����ղ�*/
+
 	private static boolean isCollection=false; 
-	/**ViewPager��ǰ��ʾҳ���±�*/
+
 	private int position=0;
 	
 	
@@ -231,7 +227,7 @@ public class BabyActivity extends FragmentActivity implements OnItemClickListene
 		}
 	}
 
-	/** ���Ʊ����䰵 0�䰵 1���� */
+
 	public void setBackgroundBlack(View view, int what) {
 		switch (what) {
 		case 0:
@@ -243,20 +239,20 @@ public class BabyActivity extends FragmentActivity implements OnItemClickListene
 		}
 	}
 
-	/**�����Ƿ�����ղ�*/
+
 	private void setSaveCollection(){
 		SharedPreferences sp=getSharedPreferences("SAVECOLLECTION", Context.MODE_PRIVATE);
 		Editor editor=sp.edit();
 		editor.putBoolean("isCollection", isCollection);
 		editor.commit();
 	}
-	/**�õ�������Ƿ�����ղر��*/
+
 	private void getSaveCollection(){
 		SharedPreferences sp=getSharedPreferences("SAVECOLLECTION", Context.MODE_PRIVATE);
 		isCollection=sp.getBoolean("isCollection", false);
 		
 	}
-	/**ȡ���ղ�*/
+
 	private  void cancelCollection(){
 		AlertDialog.Builder dialog=new AlertDialog.Builder(this);
 		dialog.setTitle("�Ƿ�ȡ���ղ�");

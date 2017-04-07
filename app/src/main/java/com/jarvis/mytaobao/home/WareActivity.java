@@ -33,29 +33,26 @@ import com.lesogo.cu.custom.xListview.XListView;
 import com.lesogo.cu.custom.xListview.XListView.IXListViewListener;
 import com.zdp.aseo.content.AseoZdpAseo;
 
-/**
- * ¶à¸öÉÌÆ·Õ¹Ê¾½çÃæ
- * @author http://yecaoly.taobao.com
- */
+
 @SuppressLint("SimpleDateFormat")
 public class WareActivity extends Activity implements OnTouchListener, IXListViewListener {
-	//ÏÔÊ¾ËùÓÐÉÌÆ·µÄÁÐ±í
+	//ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½Ð±ï¿½
 	private XListView listView;
-	//Õû¸ö¶¥²¿ËÑË÷¿Ø¼þ£¬ÓÃÓÚÒþ²ØºÍÏÔÊ¾µ×²¿Õû¸ö¿Ø¼þ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øºï¿½ï¿½ï¿½Ê¾ï¿½×²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½
 	private LinearLayout ll_search;
-	//·µ»Ø°´Å¥
+	//ï¿½ï¿½ï¿½Ø°ï¿½Å¥
 	private ImageView iv_back;
 	@SuppressWarnings("unused")
 	private EditText ed_search;
 	
 	private AnimationSet animationSet;
-	/**µÚÒ»´Î°´ÏÂÆÁÄ»Ê±µÄY×ø±ê*/
+
 	float fist_down_Y = 0;
-	/**ÇëÇóÊý¾ÝµÄÒ³Êý*/
+
 	private int pageIndex = 0;
-	/**´æ´¢ÍøÂç·µ»ØµÄÊý¾Ý*/
+
 	private HashMap<String, Object> hashMap;
-	/**´æ´¢ÍøÂç·µ»ØµÄÊý¾ÝÖÐµÄdata×Ö¶Î*/
+
 	private ArrayList<HashMap<String, Object>> arrayList = new ArrayList<HashMap<String, Object>>();
 
 	@Override
@@ -63,7 +60,7 @@ public class WareActivity extends Activity implements OnTouchListener, IXListVie
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ware_a);
 		initView();
-		//ÇëÇóÍøÂçÊý¾Ý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		new WareTask().execute();
 	}
 
@@ -82,7 +79,7 @@ public class WareActivity extends Activity implements OnTouchListener, IXListVie
 		listView = (XListView) findViewById(R.id.listView_ware);
 		listView.setOnTouchListener(this);
 		listView.setXListViewListener(this);
-		// ÉèÖÃ¿ÉÒÔ½øÐÐÏÂÀ­¼ÓÔØµÄ¹¦ÄÜ
+		// ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ØµÄ¹ï¿½ï¿½ï¿½
 		listView.setPullLoadEnable(true);
 		listView.setPullRefreshEnable(true);
 	}
@@ -93,11 +90,11 @@ public class WareActivity extends Activity implements OnTouchListener, IXListVie
 		float y = event.getY();
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
-			//µÚÒ»´Î°´ÏÂÊ±µÄ×ø±ê
+			//ï¿½ï¿½Ò»ï¿½Î°ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			fist_down_Y = y;
 			break;
 		case MotionEvent.ACTION_MOVE:
-			// ÏòÉÏ»¬¶¯£¬Òþ²ØËÑË÷À¸
+			// ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (fist_down_Y - y > 250 && ll_search.isShown()) {
 				if (animationSet != null) {
 					animationSet = null;
@@ -107,7 +104,7 @@ public class WareActivity extends Activity implements OnTouchListener, IXListVie
 				ll_search.setY(-100);
 				ll_search.setVisibility(View.GONE);
 			}
-			// ÏòÏÂ»¬¶¯£¬ÏÔÊ¾ËÑË÷À¸
+			// ï¿½ï¿½ï¿½Â»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (y - fist_down_Y > 250 && !ll_search.isShown()) {
 				if (animationSet != null) {
 					animationSet = null;
@@ -131,7 +128,7 @@ public class WareActivity extends Activity implements OnTouchListener, IXListVie
 		@Override
 		protected void onPreExecute() {
 			if (dialog==null) {
-				dialog=ProgressDialog.show(WareActivity.this, "","ÕýÔÚ¼ÓÔØ...");
+				dialog=ProgressDialog.show(WareActivity.this, "","ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½...");
 				dialog.show();
 			}
 			
@@ -146,17 +143,17 @@ public class WareActivity extends Activity implements OnTouchListener, IXListVie
 			} else {
 				url = "http://192.168.0.111:3000/taoBaoQuery?pageIndex=" + pageIndex;
 			}
-			//ÇëÇóÊý¾Ý£¬·µ»Øjson
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½json
 			String json = GetHttp.RequstGetHttp(url);
-			//µÚÒ»²ãµÄÊý×éÀàÐÍ×Ö¶Î
+			//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
 			String[] LIST1_field = { "data" };
 			
-			//µÚ¶þ²ãµÄ¶ÔÏóÀàÐÍ×Ö¶Î
+			//ï¿½Ú¶ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
 			String[] STR2_field = { "id", "name", "price", "sale_num", "address", "pic" };
 			ArrayList<String[]> aL_STR2_field = new ArrayList<String[]>();
-			//µÚ¶þ²ãµÄ¶ÔÏóÀàÐÍ×Ö¶Î·ÅÈëµÚÒ»²ãµÄÊý×éÀàÐÍ×Ö¶ÎÖÐ
+			//ï¿½Ú¶ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶Î·ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½
 			aL_STR2_field.add(STR2_field);
-			//½âÎö·µ»ØµÄjson
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½json
 			hashMap = CU_JSONResolve.parseHashMap2(json, null, LIST1_field, aL_STR2_field);
 			return hashMap;
 		}
@@ -171,9 +168,9 @@ public class WareActivity extends Activity implements OnTouchListener, IXListVie
 			}
 			
 			
-			//Èç¹ûÍøÂçÊý¾ÝÇëÇóÊ§°Ü£¬ÄÇÃ´ÏÔÊ¾Ä¬ÈÏµÄÊý¾Ý
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½Ã´ï¿½ï¿½Ê¾Ä¬ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½
 			if (result != null && result.get("data") != null) {
-				//µÃµ½data×Ö¶ÎµÄÊý¾Ý
+				//ï¿½Ãµï¿½dataï¿½Ö¶Îµï¿½ï¿½ï¿½ï¿½ï¿½
 				arrayList.addAll((Collection<? extends HashMap<String, Object>>) result.get("data"));
 				listView.setAdapter(new Adapter_ListView_ware(WareActivity.this, arrayList));
 				listView.setOnItemClickListener(new OnItemClickListener() {
@@ -195,31 +192,31 @@ public class WareActivity extends Activity implements OnTouchListener, IXListVie
 				});
 			}
 
-			// Í£Ö¹Ë¢ÐÂºÍ¼ÓÔØ
+			// Í£Ö¹Ë¢ï¿½ÂºÍ¼ï¿½ï¿½ï¿½
 			onLoad();
 
 		}
 
 	}
 
-	/** Ë¢ÐÂ */
+
 	@Override
 	public void onRefresh() {
-		// Ë¢ÐÂÊý¾Ý
+		// Ë¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		pageIndex = 0;
 		arrayList.clear();
 		new WareTask().execute();
-		// Í£Ö¹Ë¢ÐÂºÍ¼ÓÔØ
+		// Í£Ö¹Ë¢ï¿½ÂºÍ¼ï¿½ï¿½ï¿½
 		onLoad();
 
 	}
 
-	/** ¼ÓÔØ¸ü¶à */
+
 	@Override
 	public void onLoadMore() {
 		pageIndex += 1;
 		if (pageIndex >= 4) {
-			Toast.makeText(this, "ÒÑ¾­×îºóÒ»Ò³ÁË", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Ò»Ò³ï¿½ï¿½", Toast.LENGTH_SHORT).show();
 			onLoad();
 			return;
 		}
@@ -227,17 +224,17 @@ public class WareActivity extends Activity implements OnTouchListener, IXListVie
 
 	}
 
-	/** Í£Ö¹¼ÓÔØºÍË¢ÐÂ */
+
 	private void onLoad() {
 		listView.stopRefresh();
-		// Í£Ö¹¼ÓÔØ¸ü¶à
+		// Í£Ö¹ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½
 		listView.stopLoadMore();
 
-		// ÉèÖÃ×îºóÒ»´ÎË¢ÐÂÊ±¼ä
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ë¢ï¿½ï¿½Ê±ï¿½ï¿½
 		listView.setRefreshTime(getCurrentTime(System.currentTimeMillis()));
 	}
 
-	/** ¼òµ¥µÄÊ±¼ä¸ñÊ½ */
+
 	public static SimpleDateFormat mDateFormat = new SimpleDateFormat("MM-dd HH:mm");
 
 	public static String getCurrentTime(long time) {
