@@ -12,11 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Òâ¼û·´À¡½çÃæ
- * @author http://yecaoly.taobao.com
- *
- */
+
 public class User_opinion extends Activity implements OnClickListener { 
 
 	private ImageView iv_back;
@@ -47,7 +43,7 @@ public class User_opinion extends Activity implements OnClickListener {
 			finish();
 			break;
 		case R.id.tv_goMyshop:
-			//½øÈëÁµÉÏÃ¨Å®ÒÂ·»µÄÍøµê
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¨Å®ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			Uri uri = Uri.parse("http://yecaoly.taobao.com"); 
 			Intent intent = new Intent(Intent.ACTION_VIEW, uri); 
 			startActivity(intent);

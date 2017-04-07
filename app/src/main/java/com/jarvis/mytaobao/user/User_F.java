@@ -18,11 +18,7 @@ import android.widget.TextView;
 import com.jarvis.mytaobaotest.R;
 import com.javis.Adapter.Adapter_GridView;
 
-/**
- * �ҵ��Ա�������
- * @author http://yecaoly.taobao.com
- *
- */
+
 public class User_F extends Fragment implements OnClickListener {
 	private GridView my_gridView_user;
 	private Adapter_GridView adapter_GridView;

@@ -14,11 +14,7 @@ import com.jarvis.mytaobao.home.BabyActivity;
 import com.jarvis.mytaobaotest.R;
 import com.javis.Adapter.Adapter_ListView_tao;
 
-/**
- * Œ¢Ã‘÷˜ΩÁ√Ê
- * @author http://yecaoly.taobao.com
- *
- */
+
 public class Tao_F extends Fragment {
 	
 	private ListView listView_tao;

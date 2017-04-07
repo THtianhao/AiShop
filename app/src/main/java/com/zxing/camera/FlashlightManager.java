@@ -1,18 +1,4 @@
-/*
- * Copyright (C) 2010 ZXing authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package com.zxing.camera;
 
@@ -22,18 +8,7 @@ import android.util.Log;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-/**
- * This class is used to activate the weak light on some camera phones (not flash)
- * in order to illuminate surfaces for scanning. There is no official way to do this,
- * but, classes which allow access to this function still exist on some devices.
- * This therefore proceeds through a great deal of reflection.
- *
- * See <a href="http://almondmendoza.com/2009/01/05/changing-the-screen-brightness-programatically/">
- * http://almondmendoza.com/2009/01/05/changing-the-screen-brightness-programatically/</a> and
- * <a href="http://code.google.com/p/droidled/source/browse/trunk/src/com/droidled/demo/DroidLED.java">
- * http://code.google.com/p/droidled/source/browse/trunk/src/com/droidled/demo/DroidLED.java</a>.
- * Thanks to Ryan Alford for pointing out the availability of this class.
- */
+
 final class FlashlightManager {
 
   private static final String TAG = FlashlightManager.class.getSimpleName();
@@ -53,10 +28,8 @@ final class FlashlightManager {
   private FlashlightManager() {
   }
 
-  /**
-   * 控制相机闪光灯开关
-   */
-  //FIXME
+
+
   static void enableFlashlight() {
     setFlashlight(false);
   }
@@ -106,7 +79,7 @@ final class FlashlightManager {
     try {
       return Class.forName(name);
     } catch (ClassNotFoundException cnfe) {
-      // OK
+
       return null;
     } catch (RuntimeException re) {
       Log.w(TAG, "Unexpected error while finding class " + name, re);
@@ -118,7 +91,7 @@ final class FlashlightManager {
     try {
       return clazz.getMethod(name, argClasses);
     } catch (NoSuchMethodException nsme) {
-      // OK
+
       return null;
     } catch (RuntimeException re) {
       Log.w(TAG, "Unexpected error while finding method " + name, re);

@@ -1,9 +1,4 @@
-/**
- * @file XListViewHeader.java
- * @create Apr 18, 2012 5:22:27 PM
- * @author Maxwin
- * @description XListView's header
- */
+
 package com.lesogo.cu.custom.xListview;
 
 import android.content.Context;
@@ -41,10 +36,7 @@ public class XListViewHeader extends LinearLayout {
 		initView(context);
 	}
 
-	/**
-	 * @param context
-	 * @param attrs
-	 */
+
 	public XListViewHeader(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView(context);
@@ -73,11 +65,11 @@ public class XListViewHeader extends LinearLayout {
 		if (state == mState)
 			return;
 
-		if (state == STATE_REFRESHING) { // ��ʾ����
+		if (state == STATE_REFRESHING) {
 			mArrowImageView.clearAnimation();
 			mArrowImageView.setVisibility(View.INVISIBLE);
 			mProgressBar.setVisibility(View.VISIBLE);
-		} else { // ��ʾ��ͷͼƬ
+		} else {
 			mArrowImageView.setVisibility(View.VISIBLE);
 			mProgressBar.setVisibility(View.INVISIBLE);
 		}

@@ -24,10 +24,7 @@ import com.javis.ab.view.AbOnItemClickListener;
 import com.javis.ab.view.AbSlidingPlayView;
 import com.zxing.activity.CaptureActivity;
 
-/**
- * 首页
- * @author http://yecaoly.taobao.com
- */
+
 public class Home_F extends Fragment {
 	//顶部标题栏
 	private TextView tv_top_title;
@@ -45,9 +42,9 @@ public class Home_F extends Fragment {
 	private int[] pic_path_classify = { R.drawable.menu_guide_1, R.drawable.menu_guide_2, R.drawable.menu_guide_3, R.drawable.menu_guide_4, R.drawable.menu_guide_5, R.drawable.menu_guide_6, R.drawable.menu_guide_7, R.drawable.menu_guide_8 };
 	// 热门市场的资源文件
 	private int[] pic_path_hot = { R.drawable.menu_1, R.drawable.menu_2, R.drawable.menu_3, R.drawable.menu_4, R.drawable.menu_5, R.drawable.menu_6 };
-	/**存储首页轮播的界面*/
+
 	private ArrayList<View> allListView;
-	/**首页轮播的界面的资源*/
+
 	private int[] resId = { R.drawable.pager_m4, R.drawable.pager_m1, R.drawable.pager_m2, R.drawable.pager_m3, R.drawable.pager_m5};
 
 	@Override

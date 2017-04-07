@@ -11,11 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 
-/**
- * 显示大图的实现，并且可以放大缩小
- * @author http://yecaoly.taobao.com
- *
- */
+
 @SuppressLint("ValidFragment")
 public class PictrueFragment extends Fragment {
 

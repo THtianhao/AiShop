@@ -9,14 +9,10 @@ import com.zdp.aseo.content.AseoZdpAseo;
 import android.app.Activity;
 import android.os.Bundle;
 
-/**
- * ╧н╧нюж╫ГцФ
- * @author http://yecaoly.taobao.com
- *
- */
+
 public class User_life extends Activity { 
 
-	/**╧н╧нюжвИ╪Ч*/
+
 	private ScratchTextView tv_Scratch;
 	
 	@Override
@@ -30,10 +26,10 @@ public class User_life extends Activity {
 	}
 	
 	
-	private String[] str_reward={"п╩п╩╩щ╧к","╧╖о╡ё║╫╠юЬ5ц╚","╧дюЬ╫╠ё╛╪ссм","сепЦ╫╠","╠Муц╫╠","Srroyё║тыю╢╟иё║","╧╖о╡ё║р╩╣х╫╠","╨э╠╖г╦","ц╩сп╫╠","тыбРр╩ф©╬мспак"};
+	private String[] str_reward={"п╩п╩О©╫щ╧О©╫","О©╫О©╫о╡О©╫О©╫О©╫О©╫О©╫О©╫5ц╚","О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫Ц╫╠","О©╫О©╫О©╫ц╫О©╫","SrroyО©╫О©╫О©╫О©╫О©╫О©╫О©╫иёО©╫","О©╫О©╫о╡О©╫О©╫р╩О©╫х╫О©╫","О©╫э╠О©╫г╦","ц╩О©╫п╫О©╫","О©╫О©╫О©╫О©╫р╩ф©О©╫О©╫О©╫О©╫О©╫О©╫"};
 	
 	
-	/**кФ╩ЗиЗЁир╩╦ЖйЩ*/
+
 	private int getRandom(){
 		Random random=new Random();
 		int number=random.nextInt(10);

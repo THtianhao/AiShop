@@ -22,12 +22,7 @@ import com.jarvis.mytaobao.user.User_F;
 import com.jarvis.mytaobaotest.R;
 import com.javis.mytools.IBtnCallListener;
 
-/**
- * 整个程序最底层的框架Activity，所有的Fragment都是依赖于此Activity而存在的
- * 
- * @author http://yecaoly.taobao.com
- * 
- */
+
 public class Main_FA extends FragmentActivity implements OnClickListener, IBtnCallListener {
 
 	// 界面底部的菜单按钮
@@ -40,15 +35,15 @@ public class Main_FA extends FragmentActivity implements OnClickListener, IBtnCa
 	// 界面底部的未选中菜单按钮资源
 	private int[] select_off = { R.drawable.bt_menu_0_select, R.drawable.bt_menu_1_select, R.drawable.bt_menu_2_select, R.drawable.bt_menu_3_select, R.drawable.bt_menu_4_select };
 
-	/** 主界面 */
+
 	private Home_F home_F;
-	/** 微淘界面 */
+
 	private Tao_F tao_F;
-	/** 发现界面 */
+
 	private Discover_F discover_F;
-	/** 购物车界面 */
+
 	private Cart_F cart_F;
-	/** 我的淘宝界面 */
+
 	private User_F user_F;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -58,7 +53,7 @@ public class Main_FA extends FragmentActivity implements OnClickListener, IBtnCa
 		initView();
 	}
 
-	/** 得到保存的购物车数据 */
+
 	private void getSaveData() {
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		SharedPreferences sp = getSharedPreferences("SAVE_CART", Context.MODE_PRIVATE);
@@ -181,21 +176,21 @@ public class Main_FA extends FragmentActivity implements OnClickListener, IBtnCa
 		}
 	}
 
-	/** 添加Fragment **/
+
 	public void addFragment(Fragment fragment) {
 		FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
 		ft.add(R.id.show_layout, fragment);
 		ft.commit();
 	}
 
-	/** 删除Fragment **/
+
 	public void removeFragment(Fragment fragment) {
 		FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
 		ft.remove(fragment);
 		ft.commit();
 	}
 
-	/** 显示Fragment **/
+
 	public void showFragment(Fragment fragment) {
 		FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
 		// 设置Fragment的切换动画
@@ -223,7 +218,7 @@ public class Main_FA extends FragmentActivity implements OnClickListener, IBtnCa
 
 	}
 
-	/** 返回按钮的监听 */
+
 	@Override
 	public void onBackPressed() 
 	{
@@ -233,7 +228,7 @@ public class Main_FA extends FragmentActivity implements OnClickListener, IBtnCa
 		startActivity(intent);
 	}
 
-	/** Fragment的回调函数 */
+
 	@SuppressWarnings("unused")
 	private IBtnCallListener btnCallListener;
 
@@ -247,9 +242,7 @@ public class Main_FA extends FragmentActivity implements OnClickListener, IBtnCa
 		super.onAttachFragment(fragment);
 	}
 
-	/**
-	 * 响应从Fragment中传过来的消息
-	 */
+
 	@Override
 	public void transferMsg() {
 		if (home_F == null) {

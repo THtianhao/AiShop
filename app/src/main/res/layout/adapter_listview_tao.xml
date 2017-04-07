@@ -17,7 +17,6 @@
             android:src="@drawable/tao_user_2" />
 
         <TextView
-            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -36,14 +35,12 @@
             android:src="@drawable/tao_3" />
     
      <TextView
-            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="【优惠街 】  恋上猫女衣坊，最好的优惠，地址：http://yecaoly.taobao.com"
             android:textColor="@color/tv_Black" />
      <TextView
-            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"

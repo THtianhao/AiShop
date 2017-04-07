@@ -206,7 +206,7 @@ public class AllBaby_F extends Fragment implements IBtnCallListener, onCheckedCh
     }
 
 
-    /***/
+
     public static boolean[] deleteByIndex(boolean[] array, int index) {
         boolean[] newArray = new boolean[array.length - 1];
         for (int i = 0; i < newArray.length; i++) {
