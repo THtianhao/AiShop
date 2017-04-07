@@ -42,6 +42,7 @@
                 android:background="@color/bg_Gray" />
 
             <LinearLayout
+                android:id="@+id/my_linearlayout1"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:orientation="horizontal" >
@@ -110,6 +111,7 @@
                 android:background="@color/bg_Gray" />
 
             <LinearLayout
+                android:id="@+id/my_linearlayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
@@ -192,6 +194,7 @@
                 android:background="@color/bg_Gray" />
 
             <LinearLayout
+                android:id="@+id/my_linearlayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
