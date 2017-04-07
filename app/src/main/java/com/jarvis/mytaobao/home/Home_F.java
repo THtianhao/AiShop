@@ -24,7 +24,9 @@ import com.javis.ab.view.AbOnItemClickListener;
 import com.javis.ab.view.AbSlidingPlayView;
 import com.zxing.activity.CaptureActivity;
 
-
+/**
+ * @author http://yecaoly.taobao.com
+ */
 public class Home_F extends Fragment {
 	private TextView tv_top_title;
 	private GridView gridView_classify;

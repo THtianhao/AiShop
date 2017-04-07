@@ -68,8 +68,8 @@ public class Adapter_ListView_ware extends BaseAdapter {
 			CU_VolleyTool.getInstance(context).getmImageLoader().get("http://192.168.0.111:3000/taoBao/img/" + arrayList.get(position).get("pic"), listener);
 
 			holderView.tv_name.setText(arrayList.get(position).get("name").toString());
-			holderView.tv_price.setText("" + arrayList.get(position).get("price").toString() + "元");
-			holderView.tv_sale_num.setText(":" + arrayList.get(position).get("sale_num").toString() + "     " + arrayList.get(position).get("address").toString());
+			holderView.tv_price.setText("￥" + arrayList.get(position).get("price").toString() + "元");
+			holderView.tv_sale_num.setText("月销量:" + arrayList.get(position).get("sale_num").toString() + "件     " + arrayList.get(position).get("address").toString());
 		}
 		return currentView;
 	}

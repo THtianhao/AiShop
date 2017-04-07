@@ -9,7 +9,10 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-
+/**
+ * @author Ryan Tang
+ *
+ */
 public final class EncodingHandler {
 	private static final int BLACK = 0xff000000;
 	

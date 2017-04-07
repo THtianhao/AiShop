@@ -8,7 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
+/**
+ * 购物车界面中的降价宝贝界面
+ * @author http://yecaoly.taobao.com
+ *
+ */
 public class LowBaby_F extends Fragment {
 
 	@Override

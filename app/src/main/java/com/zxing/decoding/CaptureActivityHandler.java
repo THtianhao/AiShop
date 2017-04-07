@@ -1,4 +1,18 @@
-
+/*
+ * Copyright (C) 2008 ZXing authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.zxing.decoding;
 
@@ -20,7 +34,9 @@ import com.zxing.activity.CaptureActivity;
 import com.zxing.camera.CameraManager;
 import com.zxing.view.ViewfinderResultPointCallback;
 
-
+/**
+ * This class handles all the messaging which comprises the state machine for capture.
+ */
 public final class CaptureActivityHandler extends Handler {
 
   private static final String TAG = CaptureActivityHandler.class.getSimpleName();
@@ -67,11 +83,11 @@ public final class CaptureActivityHandler extends Handler {
         state = State.SUCCESS;
         Bundle bundle = message.getData();
         
-
+        /***********************************************************************/
         Bitmap barcode = bundle == null ? null :
             (Bitmap) bundle.getParcelable(DecodeThread.BARCODE_BITMAP);//锟斤拷锟矫憋拷锟斤拷锟竭筹拷
         
-        activity.handleDecode((Result) message.obj, barcode);//锟斤拷锟截斤拷锟
+        activity.handleDecode((Result) message.obj, barcode);//锟斤拷锟截斤拷锟�        /***********************************************************************/
         break;
       case R.id.decode_failed:
         // We're decoding as fast as possible, so when one decode fails, start another.

@@ -18,11 +18,15 @@ import android.widget.TextView;
 import com.jarvis.mytaobaotest.R;
 import com.javis.Adapter.Adapter_GridView;
 
-
+/**
+ * �ҵ��Ա�������
+ * @author http://yecaoly.taobao.com
+ *
+ */
 public class User_F extends Fragment implements OnClickListener {
 	private GridView my_gridView_user;
 	private Adapter_GridView adapter_GridView;
-	//Դ
+	//��Դ�ļ�
 	private int[] pic_path={R.drawable.user_3,R.drawable.user_4,R.drawable.user_5,R.drawable.user_6,R.drawable.user_7};
     
 	private LinearLayout ll_user_life;
@@ -63,7 +67,7 @@ public class User_F extends Fragment implements OnClickListener {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				//뱾ӵд
+				//���뱾��ӵ�д���������
 //				Intent intent=new Intent(getActivity(),HelloSensor.class);
 //				startActivity(intent);
 				
@@ -80,17 +84,17 @@ public class User_F extends Fragment implements OnClickListener {
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
 //		case R.id.ll_user_life:
-//			//ιֽ
+//			//����ι��ֽ���
 //			Intent intent1=new Intent(getActivity(),User_life.class);
 //			startActivity(intent1);
 //			break;
 //		case R.id.ll_user_members:
-//			//ιֽ
+//			//����ι��ֽ���
 //			Intent intent2=new Intent(getActivity(),User_life.class);
 //			startActivity(intent2);
 //			break;
 //		case R.id.ll_user_store:
-//			//ιֽ
+//			//����ι��ֽ���
 //			Intent intent3=new Intent(getActivity(),User_life.class);
 //			startActivity(intent3);
 //			break;

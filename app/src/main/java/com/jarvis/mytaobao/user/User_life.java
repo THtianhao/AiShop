@@ -9,10 +9,14 @@ import com.zdp.aseo.content.AseoZdpAseo;
 import android.app.Activity;
 import android.os.Bundle;
 
-
+/**
+ * ¹Î¹ÎÀÖ½çÃæ
+ * @author http://yecaoly.taobao.com
+ *
+ */
 public class User_life extends Activity { 
 
-
+	/**¹Î¹ÎÀÖ×é¼ş*/
 	private ScratchTextView tv_Scratch;
 	
 	@Override
@@ -26,10 +30,10 @@ public class User_life extends Activity {
 	}
 	
 	
-	private String[] str_reward={"Ğ»Ğ»İ¹","Ï²5Ã«","","ã½±","Ã½","SrroyÉ£","Ï²Ò»È½","Ü±Ç¸","Ğ½","Ò»Æ¿"};
+	private String[] str_reward={"Ğ»Ğ»»İ¹Ë","¹§Ï²£¡½±Àø5Ã«","¹ÄÀø½±£¬¼ÓÓÍ","ÓÅĞã½±","±íÕÃ½±","Srroy£¡ÔÙÀ´°É£¡","¹§Ï²£¡Ò»µÈ½±","ºÜ±§Ç¸","Ã»ÓĞ½±","ÔÙÂòÒ»Æ¿¾ÍÓĞÁË"};
 	
 	
-
+	/**Ëæ»úÉú³ÉÒ»¸öÊı*/
 	private int getRandom(){
 		Random random=new Random();
 		int number=random.nextInt(10);

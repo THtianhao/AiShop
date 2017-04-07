@@ -20,7 +20,10 @@ import com.jarvis.mytaobaotest.R;
 import com.javis.Adapter.Adapter_GridView;
 import com.zxing.activity.CaptureActivity;
 
-
+/**
+ * @author http://yecaoly.taobao.com
+ *
+ */
 public class Discover_F extends Fragment {
 	private GridView my_gridView_life;
 	private GridView my_gridView_app;

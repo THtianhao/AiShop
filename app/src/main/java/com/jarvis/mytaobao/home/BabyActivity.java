@@ -34,7 +34,11 @@ import com.javis.Adapter.Adapter_ListView_detail;
 import com.lesogo.cu.custom.ScaleView.HackyViewPager;
 import com.zdp.aseo.content.AseoZdpAseo;
 
-
+/**
+ * ������Ʒ�������
+ * @author http://yecaoly.taobao.com
+ * 
+ */
 public class BabyActivity extends FragmentActivity implements OnItemClickListener, OnClickListener {
 
 	NfcAdapter nfcAdapter;
@@ -44,15 +48,15 @@ public class BabyActivity extends FragmentActivity implements OnItemClickListene
 	private int[] resId = { R.drawable.detail_show_1, R.drawable.detail_show_2, R.drawable.detail_show_3, R.drawable.detail_show_4, R.drawable.detail_show_5, R.drawable.detail_show_6 };
 	private ListView listView;
 	private ImageView iv_baby_collection;
-
+	/**������Ʒ������Ϣ����*/
 	private BabyPopWindow popWindow;
-
+	/** �������ñ������� */
 	private LinearLayout all_choice_layout = null;
-
+	/**�ж��Ƿ�������������ť*/
 	boolean isClickBuy = false;
-
+	/**�Ƿ�����ղ�*/
 	private static boolean isCollection=false; 
-
+	/**ViewPager��ǰ��ʾҳ���±�*/
 	private int position=0;
 	
 	
@@ -60,7 +64,7 @@ public class BabyActivity extends FragmentActivity implements OnItemClickListene
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.babydetail_a);
-		//ղ
+		//�õ�������ղ���Ϣ
 		getSaveCollection();
 		initView();
 		popWindow = new BabyPopWindow(this);
@@ -69,10 +73,10 @@ public class BabyActivity extends FragmentActivity implements OnItemClickListene
 
 	@SuppressLint("NewApi")
 	private void initView() {
-		// ȡĬϵNFC
+		// ��ȡĬ�ϵ�NFC������
 		nfcAdapter = NfcAdapter.getDefaultAdapter(this);
 		if (nfcAdapter == null) {
-			Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "���豸��֧��NFC", Toast.LENGTH_SHORT).show();
 		}
 		AseoZdpAseo.initType(this, AseoZdpAseo.INSERT_TYPE);
 		((ImageView) findViewById(R.id.iv_back)).setOnClickListener(this);
@@ -89,8 +93,8 @@ public class BabyActivity extends FragmentActivity implements OnItemClickListene
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				//èŮ·
-				Uri uri = Uri.parse("http://yecaoly.taobao.com");
+				//��������èŮ�·�������
+				Uri uri = Uri.parse("http://yecaoly.taobao.com"); 
 				Intent intent = new Intent(Intent.ACTION_VIEW, uri); 
 				startActivity(intent);
 			}
@@ -98,7 +102,7 @@ public class BabyActivity extends FragmentActivity implements OnItemClickListene
 		initViewPager();
 		
 		if (isCollection) {
-			//ѾղأղغЧ
+			//����Ѿ��ղأ�����ʾ�ղغ��Ч��
 			iv_baby_collection.setImageResource(R.drawable.second_2_collection);
 		}
 	}
@@ -107,30 +111,30 @@ public class BabyActivity extends FragmentActivity implements OnItemClickListene
 	public void onClick(View view) {
 		switch (view.getId()) {
 		case R.id.iv_back:
-			//
+			//����
 			finish();
 			break;
 		case R.id.iv_baby_collection:
-			//ղ
+			//�ղ�
 			if (isCollection) {
-				//Ƿȡղ
+				//��ʾ�Ƿ�ȡ���ղ�
 				cancelCollection();
 			}else {
 				isCollection=true;
 				setSaveCollection();
-				//ѾղأղغЧ
+				//����Ѿ��ղأ�����ʾ�ղغ��Ч��
 				iv_baby_collection.setImageResource(R.drawable.second_2_collection);
-				Toast.makeText(this, "ղسɹ", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "�ղسɹ�", Toast.LENGTH_SHORT).show();
 			}
 			break;
 		case R.id.put_in:
-			//ӹ
+			//��ӹ��ﳵ
 			isClickBuy = false;
 			setBackgroundBlack(all_choice_layout, 0);
 			popWindow.showAsDropDown(view);
 			break;
 		case R.id.buy_now:
-			//
+			//��������
 			isClickBuy = true;
 			setBackgroundBlack(all_choice_layout, 0);
 			popWindow.showAsDropDown(view);
@@ -155,7 +159,7 @@ public class BabyActivity extends FragmentActivity implements OnItemClickListene
 			imageView.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View arg0) {
-					//ս鿴ͼ
+					//��ս���鿴��ͼ����
 					Intent intent = new Intent(BabyActivity.this, ShowBigPictrue.class);
 					intent.putExtra("position", position);
 					startActivity(intent);
@@ -213,21 +217,21 @@ public class BabyActivity extends FragmentActivity implements OnItemClickListene
 
 	}
 
-	//Ӧ
+	//���������ȷ�ϰ�ť����Ӧ
 	@Override
 	public void onClickOKPop() {
 		setBackgroundBlack(all_choice_layout, 1);
 
 		if (isClickBuy) {
-			//֮ǰǵôת
+			//���֮ǰ�ǵ��������������ô����ת�������������
 			Intent intent = new Intent(BabyActivity.this, BuynowActivity.class);
 			startActivity(intent);
 		}else {
-			Toast.makeText(this, "ӵɹ", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "��ӵ����ﳵ�ɹ�", Toast.LENGTH_SHORT).show();
 		}
 	}
 
-
+	/** ���Ʊ����䰵 0�䰵 1���� */
 	public void setBackgroundBlack(View view, int what) {
 		switch (what) {
 		case 0:
@@ -239,33 +243,33 @@ public class BabyActivity extends FragmentActivity implements OnItemClickListene
 		}
 	}
 
-
+	/**�����Ƿ�����ղ�*/
 	private void setSaveCollection(){
 		SharedPreferences sp=getSharedPreferences("SAVECOLLECTION", Context.MODE_PRIVATE);
 		Editor editor=sp.edit();
 		editor.putBoolean("isCollection", isCollection);
 		editor.commit();
 	}
-
+	/**�õ�������Ƿ�����ղر��*/
 	private void getSaveCollection(){
 		SharedPreferences sp=getSharedPreferences("SAVECOLLECTION", Context.MODE_PRIVATE);
 		isCollection=sp.getBoolean("isCollection", false);
 		
 	}
-
+	/**ȡ���ղ�*/
 	private  void cancelCollection(){
 		AlertDialog.Builder dialog=new AlertDialog.Builder(this);
-		dialog.setTitle("Ƿȡղ");
-		dialog.setPositiveButton("", new DialogInterface.OnClickListener() {
+		dialog.setTitle("�Ƿ�ȡ���ղ�");
+		dialog.setPositiveButton("ȷ��", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
 				isCollection=false;
-				//ȡղأȡղغЧ
+				//���ȡ���ղأ�����ʾȡ���ղغ��Ч��
 				iv_baby_collection.setImageResource(R.drawable.second_2);
 				setSaveCollection();
 			}
 		});
-		dialog.setNegativeButton("ȡ", null);
+		dialog.setNegativeButton("ȡ��", null);
 		dialog.create().show();
 		
 	}

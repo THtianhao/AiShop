@@ -11,7 +11,10 @@ import com.jarvis.mytaobaotest.R;
 import com.zdp.aseo.content.AseoZdpAseo;
 
 
-
+/**
+ * @author http://yecaoly.taobao.com
+ *
+ */
 public class BuynowActivity extends Activity {
 
 	private TextView bt_ok,bt_back;

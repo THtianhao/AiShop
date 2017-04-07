@@ -1,4 +1,9 @@
-
+/**
+ * @file XFooterView.java
+ * @create Mar 31, 2012 9:33:43 PM
+ * @author Maxwin
+ * @description XListView's footer
+ */
 package com.lesogo.cu.custom.xListview;
 
 import android.content.Context;
@@ -33,18 +38,18 @@ public class XListViewFooter extends LinearLayout {
 	}
 
 	public void setState(int state) {
-		//״̬
+		//����״̬
 		mProgressBar.setVisibility(View.INVISIBLE);
 		mHintView.setVisibility(View.INVISIBLE);
 		if (state == STATE_READY) {
-			//ɿѯ
+			//�ɿ���ѯ����
 			mHintView.setVisibility(View.VISIBLE);
 			mHintView.setText(R.string.xlistview_footer_hint_ready);
 		} else if (state == STATE_LOADING) {
-			//״̬
+			//����״̬
 			mProgressBar.setVisibility(View.VISIBLE);
 		} else {
-			//鿴
+			//�鿴����
 			mHintView.setVisibility(View.GONE);
 			mHintView.setText(R.string.xlistview_footer_hint_normal);
 		}
@@ -63,26 +68,34 @@ public class XListViewFooter extends LinearLayout {
 		return lp.bottomMargin;
 	}
 
-
+	/**
+	 * normal status
+	 */
 	public void normal() {
 		mHintView.setVisibility(View.VISIBLE);
 		mProgressBar.setVisibility(View.GONE);
 	}
 
-
+	/**
+	 * loading status
+	 */
 	public void loading() {
 		mHintView.setVisibility(View.GONE);
 		mProgressBar.setVisibility(View.GONE);
 	}
 
-
+	/**
+	 * hide footer when disable pull load more
+	 */
 	public void hide() {
 		LayoutParams lp = (LayoutParams) mContentView.getLayoutParams();
 		lp.height = 0;
 		mContentView.setLayoutParams(lp);
 	}
 
-
+	/**
+	 * show footer
+	 */
 	public void show() {
 		LayoutParams lp = (LayoutParams) mContentView.getLayoutParams();
 		lp.height = LayoutParams.WRAP_CONTENT;

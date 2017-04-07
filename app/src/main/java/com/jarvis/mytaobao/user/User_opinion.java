@@ -12,7 +12,11 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
+/**
+ * 意见反馈界面
+ * @author http://yecaoly.taobao.com
+ *
+ */
 public class User_opinion extends Activity implements OnClickListener { 
 
 	private ImageView iv_back;
@@ -43,8 +47,8 @@ public class User_opinion extends Activity implements OnClickListener {
 			finish();
 			break;
 		case R.id.tv_goMyshop:
-			//猫女路
-			Uri uri = Uri.parse("http://yecaoly.taobao.com");
+			//进入恋上猫女衣坊的网店
+			Uri uri = Uri.parse("http://yecaoly.taobao.com"); 
 			Intent intent = new Intent(Intent.ACTION_VIEW, uri); 
 			startActivity(intent);
 			break;

@@ -9,7 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-
+/**
+ * @author http://yecaoly.taobao.com
+ *
+ */
 public class StockBaby_F extends Fragment {
 
 	@Override

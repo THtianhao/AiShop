@@ -13,16 +13,21 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
-
+/**
+ * ¹Î¹Î¿¨Àà
+ * 
+ * @author http://yecaoly.taobao.com
+ * 
+ */
 public class ScratchTextView extends TextView {
 
 	private float TOUCH_TOLERANCE;
-	private Bitmap mBitmap;// Ä±Í¼
-	private Canvas mCanvas;// mBitmapÏ»
-	private Paint mPaint;// ßµ
-	private Path mPath;//
+	private Bitmap mBitmap;// ¸ÇÔÚ×ÖÉÏÃæµÄ±³¾°Í¼
+	private Canvas mCanvas;// ÓÃÓÚÔÚmBitmapÉÏ»­Ïß
+	private Paint mPaint;// ÓÃÀ´»­ÏßµÄ
+	private Path mPath;// Ïß
 	private float mX, mY;
-
+	/**ÓÃÓÚÅÐ¶ÏÊÇ·ñÐèÒª¸Ç×¡ÏÂÃæµÄÎÄ×Ö*/
 	private boolean isInited = false;
 
 	public ScratchTextView(Context context) {
@@ -42,35 +47,44 @@ public class ScratchTextView extends TextView {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		if (isInited) {
-			mCanvas.drawPath(mPath, mPaint);// ß»mCanvas,mCanvaß»mBitmap
-			canvas.drawBitmap(mBitmap, 0, 0, null);// mBitmaptextview
+			mCanvas.drawPath(mPath, mPaint);// °ÑÏß»­µ½mCanvasÉÏ,mCanva»á°ÑÏß»­µ½mBitmap
+			canvas.drawBitmap(mBitmap, 0, 0, null);// °ÑmBitmap»­µ½textviewÉÏ
 		}
 	}
 
-
+	/**
+	 * ³õÊ¼»¯¹Î¹Î¿¨
+	 * 
+	 * @param bgColor
+	 *            ¹Î¹Î¿¨±³¾°É«£¬ÓÃÓÚ¸Ç×¡ÏÂÃæµÄ×Ö
+	 * @param paintStrokeWidth
+	 *            ²Á³ýÏß¿í
+	 * @param touchTolerance
+	 *            »­ÏßÈÝ²î
+	 */
 	public void initScratchCard(final int bgColor, final int paintStrokeWidth, float touchTolerance) {
 		TOUCH_TOLERANCE = touchTolerance;
 		mPaint = new Paint();
 
-		mPaint.setAlpha(240);// alphaÖµ0È«Í¸255È«Í¸
+		mPaint.setAlpha(240);// alphaÖµ£º0±íÊ¾ÍêÈ«Í¸Ã÷£¬255±íÊ¾ÍêÈ«²»Í¸Ã÷
 		mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));//
-		mPaint.setAntiAlias(true);//
-		mPaint.setDither(true);//
-		mPaint.setStyle(Paint.Style.STROKE);// Í£ STROKE FILLÊµ FILL_AND_STROKE
-		mPaint.setStrokeJoin(Paint.Join.ROUND);// Ê½Ç¢
-		mPaint.setStrokeCap(Paint.Cap.ROUND);// Ë¢
-		mPaint.setStrokeWidth(paintStrokeWidth);// Ë¢
+		mPaint.setAntiAlias(true);// ¿¹¾â³Ý
+		mPaint.setDither(true);// ·À¶¶¶¯
+		mPaint.setStyle(Paint.Style.STROKE);// »­±ÊÀàÐÍ£º STROKE¿ÕÐÄ FILLÊµÐÄ FILL_AND_STROKEÓÃÆõÐÎÌî³ä
+		mPaint.setStrokeJoin(Paint.Join.ROUND);// »­±Ê½ÓÇ¢µãÀàÐÍ
+		mPaint.setStrokeCap(Paint.Cap.ROUND);// »­±Ê±ÊË¢ÀàÐÍ
+		mPaint.setStrokeWidth(paintStrokeWidth);// »­±Ê±ÊË¢¿í¶È
 		mPath = new Path();
 
-		//Ò»Å¿Õ°×µÍ¼Æ¬Ú¸×¡
+		//½¨Á¢Ò»ÕÅ¿Õ°×µÄÍ¼Æ¬ÓÃÓÚ¸Ç×¡ÏÂÃæµÄÎÄ×Ö
 		mBitmap = Bitmap.createBitmap(getLayoutParams().width, getLayoutParams().height, Config.ARGB_8888);
 		mCanvas = new Canvas(mBitmap);
-		//ÎªÍ¼Æ¬
+		//ÎªÕâ¸öÍ¼Æ¬»æÖÆÑÕÉ«
 		Paint paint=new Paint();
 		paint.setColor(Color.parseColor("#A79F9F"));
 		paint.setTextSize(30);
 		mCanvas.drawColor(bgColor);
-		mCanvas.drawText("Î¿Í¼",getLayoutParams().width/ 4, getLayoutParams().height/2+15, paint);
+		mCanvas.drawText("¹Î¿ª´ËÍ¼²ã",getLayoutParams().width/ 4, getLayoutParams().height/2+15, paint);
 		isInited = true;
 	}
 
@@ -82,18 +96,18 @@ public class ScratchTextView extends TextView {
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			touchDown(event.getX(), event.getY());
-			//Â½
+			//¸üÐÂ½çÃæ
 			invalidate();
 			break;
 		case MotionEvent.ACTION_MOVE:
 			touchMove(event.getX(), event.getY());
-			//Â½
+			//¸üÐÂ½çÃæ
 			invalidate();
 			break;
 //		case MotionEvent.ACTION_UP:
-//			//Ê²Ã´Ð§
+//			//Ã»Ê²Ã´Ð§¹û
 //			touchUp(event.getX(), event.getY());
-//			//Â½
+//			//¸üÐÂ½çÃæ
 //			invalidate();
 //			break;
 		}
@@ -101,23 +115,23 @@ public class ScratchTextView extends TextView {
 	}
 
 	private void touchDown(float x, float y) {
-		// Â·ß£Ö®Ç°ÆµÄ¹ì¼£
+		// ÖØÖÃ»æÖÆÂ·Ïß£¬¼´Òþ²ØÖ®Ç°»æÖÆµÄ¹ì¼£
 		mPath.reset();
-		// mPathÆµÄ»
+		// mPath»æÖÆµÄ»æÖÆÆðµã
 		mPath.moveTo(x, y);
 		mX = x;
 		mY = y;
 	}
 
 	private void touchMove(float x, float y) {
-		//xyÆ¶Ä¾
+		//xºÍyÒÆ¶¯µÄ¾àÀë
 		float dx = Math.abs(x - mX);
 		float dy = Math.abs(y - mY);
-		//x,yÆ¶Ä¾Ú»Ý²
+		//x,yÒÆ¶¯µÄ¾àÀë´óÓÚ»­ÏßÈÝ²î
 		if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
-			// Î±ÊµÆ½ß£mX, mYÎªã£¬(x + mX) / 2, (y + mY) / 2ÎªÕµ
+			// ¶þ´Î±´Èû¶û£¬ÊµÏÖÆ½»¬ÇúÏß£»mX, mYÎª²Ù×÷µã£¬(x + mX) / 2, (y + mY) / 2ÎªÖÕµã
 			mPath.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
-			// Ú¶Ö´Ò»Î½ÖµÎªÚ¶ÎµÄ³Ê¼Öµ
+			// µÚ¶þ´ÎÖ´ÐÐÊ±£¬µÚÒ»´Î½áÊøµ÷ÓÃµÄ×ø±êÖµ½«×÷ÎªµÚ¶þ´Îµ÷ÓÃµÄ³õÊ¼×ø±êÖµ
 			mX = x;
 			mY = y;
 		}
@@ -127,7 +141,7 @@ public class ScratchTextView extends TextView {
 //	private void touchUp(float x, float y) {
 //		mPath.lineTo(x, y);
 //		mCanvas.drawPath(mPath, mPaint);
-//		// Â·ß£Ö®Ç°ÆµÄ¹ì¼£
+//		// ÖØÖÃ»æÖÆÂ·Ïß£¬¼´Òþ²ØÖ®Ç°»æÖÆµÄ¹ì¼£
 //		mPath.reset();
 //	}
 

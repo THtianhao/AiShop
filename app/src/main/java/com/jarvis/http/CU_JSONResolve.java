@@ -8,9 +8,16 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
-
+/**
+ * @author Common Use JSON Resolve
+ */
 public class CU_JSONResolve {
-
+	/**
+	 *
+	 * @param jO
+	 * @param key
+	 * @return String_value
+	 */
 	private static String getSTR(JSONObject jO, String key) {
 
 		String value = "";
@@ -28,7 +35,12 @@ public class CU_JSONResolve {
 		return value.equals("null") ? "" : value;
 	}
 
-
+	/**
+	 *
+	 * @param jO
+	 * @param STR_field
+	 * @return hashMap
+	 */
 	private static HashMap<String, Object> getHashMap1(JSONObject jO, String STR_field[]) {
 
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
@@ -43,7 +55,15 @@ public class CU_JSONResolve {
 		return hashMap;
 	}
 
-
+	/**
+	 *
+	 * 
+	 * @param jO
+	 * @param STR1_field
+	 * @param LIST1_field
+	 * @param aL_STR2_field
+	 * @return
+	 */
 	private static HashMap<String, Object> getHashMap2(JSONObject jO, String STR1_field[], String LIST1_field[], ArrayList<String[]> aL_STR2_field) {
 
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
@@ -63,7 +83,14 @@ public class CU_JSONResolve {
 		return hashMap;
 	}
 
-
+	/**
+	 *
+	 * 
+	 * @param jO
+	 * @param key
+	 * @param STR_field
+	 * @return List_value
+	 */
 	private static ArrayList<HashMap<String, Object>> getLIST1(JSONObject jO, String key, String STR_field[]) {
 
 		ArrayList<HashMap<String, Object>> value = new ArrayList<HashMap<String, Object>>();
@@ -94,7 +121,16 @@ public class CU_JSONResolve {
 		return value;
 	}
 
-
+	/**
+	 *
+	 * 
+	 * @param jO
+	 * @param key
+	 * @param STR1_field
+	 * @param aL_LIST1_field
+	 * @param aLL_STR2_field
+	 * @return List_value
+	 */
 	private static ArrayList<HashMap<String, Object>> getLIST2(JSONObject jO, String key, String STR1_field[], ArrayList<String[]> aL_LIST1_field, ArrayList<ArrayList<String[]>> aLL_STR2_field) {
 
 		ArrayList<HashMap<String, Object>> value = new ArrayList<HashMap<String, Object>>();

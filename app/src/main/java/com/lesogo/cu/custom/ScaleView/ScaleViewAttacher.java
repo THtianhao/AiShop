@@ -1,4 +1,18 @@
-
+/*******************************************************************************
+ * Copyright 2011, 2012 Chris Banes.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package com.lesogo.cu.custom.ScaleView;
 
 import android.content.Context;
@@ -31,11 +45,11 @@ public class ScaleViewAttacher implements IScaleView, View.OnTouchListener, Vers
 	static final int EDGE_RIGHT = 1;
 	static final int EDGE_BOTH = 2;
 
-
+	/** 放大的最大倍数 */
 	public static final float DEFAULT_MAX_SCALE = 3.0f;
-
+	/** 放大的中间倍数 */
 	public static final float DEFAULT_MID_SCALE = 1.75f;
-
+	/** 放大的最小倍数 */
 	public static final float DEFAULT_MIN_SCALE = 1.0f;
 
 	private float mMinScale = DEFAULT_MIN_SCALE;
@@ -52,12 +66,16 @@ public class ScaleViewAttacher implements IScaleView, View.OnTouchListener, Vers
 		}
 	}
 
-
+	/**
+	 * @return true if the ImageView exists, and it's Drawable existss
+	 */
 	private static boolean hasDrawable(ImageView imageView) {
 		return null != imageView && null != imageView.getDrawable();
 	}
 
-
+	/**
+	 * @return true if the ScaleType is supported.
+	 */
 	private static boolean isSupportedScaleType(final ScaleType scaleType) {
 		if (null == scaleType) {
 			return false;
@@ -72,11 +90,17 @@ public class ScaleViewAttacher implements IScaleView, View.OnTouchListener, Vers
 		}
 	}
 
-
+	/**
+	 * Set's the ImageView's ScaleType to Matrix.
+	 */
 	private static void setImageViewScaleTypeMatrix(ImageView imageView) {
 		if (null != imageView) {
 			if (imageView instanceof ScaleView) {
-
+				/**
+				 * ScaleView sets it's own ScaleType to Matrix, then diverts all
+				 * calls setScaleType to this.setScaleType. Basically we don't
+				 * need to do anything here
+				 */
 			} else {
 				imageView.setScaleType(ScaleType.MATRIX);
 			}
@@ -152,7 +176,13 @@ public class ScaleViewAttacher implements IScaleView, View.OnTouchListener, Vers
 		return mZoomEnabled;
 	}
 
-
+	/**
+	 * Clean-up the resources attached to this object. This needs to be called
+	 * when the ImageView is no longer used. A good example is from
+	 * {@link View#onDetachedFromWindow()} or from
+	 * {@link android.app.Activity#onDestroy()}. This is automatically called if
+	 * you are using {@link ScaleView.co.senab.Scaleview.ScaleView}.
+	 */
 	@SuppressWarnings("deprecation")
 	public final void cleanup() {
 		if (null != mImageView) {
@@ -256,7 +286,15 @@ public class ScaleViewAttacher implements IScaleView, View.OnTouchListener, Vers
 			mSuppMatrix.postTranslate(dx, dy);
 			checkAndDisplayMatrix();
 
-
+			/**
+			 * Here we decide whether to let the ImageView's parent to start
+			 * taking over the touch event.
+			 * 
+			 * First we check whether this function is enabled. We never want
+			 * the parent to take over if we're scaling. We then check the edge
+			 * we're on, and the direction of the scroll (i.e. if we're pulling
+			 * against the edge, aka 'overscrolling', let the parent take over).
+			 */
 			if (mAllowParentInterceptOnEdge && !mScaleDragDetector.isScaling()) {
 				if (mScrollEdge == EDGE_BOTH || (mScrollEdge == EDGE_LEFT && dx >= 1f) || (mScrollEdge == EDGE_RIGHT && dx <= -1f)) {
 					android.view.ViewParent vParent = imageView.getParent();
@@ -292,7 +330,13 @@ public class ScaleViewAttacher implements IScaleView, View.OnTouchListener, Vers
 			final int bottom = imageView.getBottom();
 			final int left = imageView.getLeft();
 
-
+			/**
+			 * We need to check whether the ImageView's bounds have changed.
+			 * This would be easier if we targeted API 11+ as we could just use
+			 * View.OnLayoutChangeListener. Instead we have to replicate the
+			 * work, keeping track of the ImageView's bounds and then checking
+			 * if the values change.
+			 */
 			if (top != mIvTop || bottom != mIvBottom || left != mIvLeft || right != mIvRight) {
 				// Update our base matrix, as the bounds have changed
 				updateBaseMatrix(imageView.getDrawable());
@@ -510,7 +554,9 @@ public class ScaleViewAttacher implements IScaleView, View.OnTouchListener, Vers
 		}
 	}
 
-
+	/**
+	 * Helper method that simply checks the Matrix, and then displays the result
+	 */
 	private void checkAndDisplayMatrix() {
 		checkMatrixBounds();
 		setImageViewMatrix(getDisplayMatrix());
@@ -519,7 +565,10 @@ public class ScaleViewAttacher implements IScaleView, View.OnTouchListener, Vers
 	private void checkImageViewScaleType() {
 		ImageView imageView = getImageView();
 
-
+		/**
+		 * ScaleView's getScaleType() will just divert to this.getScaleType() so
+		 * only call if we're not attached to a ScaleView.
+		 */
 		if (null != imageView && !(imageView instanceof ScaleView)) {
 			if (imageView.getScaleType() != ScaleType.MATRIX) {
 				throw new IllegalStateException("The ImageView's ScaleType has been changed since attaching a ScaleViewAttacher");
@@ -588,7 +637,13 @@ public class ScaleViewAttacher implements IScaleView, View.OnTouchListener, Vers
 		mSuppMatrix.postTranslate(deltaX, deltaY);
 	}
 
-
+	/**
+	 * Helper method that maps the supplied Matrix to the current Drawable
+	 * 
+	 * @param matrix
+	 *            - Matrix to map Drawable against
+	 * @return RectF - Displayed Rectangle
+	 */
 	private RectF getDisplayRect(Matrix matrix) {
 		ImageView imageView = getImageView();
 
@@ -603,13 +658,23 @@ public class ScaleViewAttacher implements IScaleView, View.OnTouchListener, Vers
 		return null;
 	}
 
-
+	/**
+	 * Helper method that 'unpacks' a Matrix and returns the required value
+	 * 
+	 * @param matrix
+	 *            - Matrix to unpack
+	 * @param whichValue
+	 *            - Which value from Matrix.M* to return
+	 * @return float - returned value
+	 */
 	private float getValue(Matrix matrix, int whichValue) {
 		matrix.getValues(mMatrixValues);
 		return mMatrixValues[whichValue];
 	}
 
-
+	/**
+	 * Resets the Matrix back to FIT_CENTER, and then displays it.s
+	 */
 	private void resetMatrix() {
 		mSuppMatrix.reset();
 		setImageViewMatrix(getDisplayMatrix());
@@ -633,7 +698,12 @@ public class ScaleViewAttacher implements IScaleView, View.OnTouchListener, Vers
 		}
 	}
 
-
+	/**
+	 * Calculate Matrix for FIT_CENTER
+	 * 
+	 * @param d
+	 *            - Drawable being displayed
+	 */
 	private void updateBaseMatrix(Drawable d) {
 		ImageView imageView = getImageView();
 		if (null == imageView || null == d) {
@@ -692,23 +762,69 @@ public class ScaleViewAttacher implements IScaleView, View.OnTouchListener, Vers
 		resetMatrix();
 	}
 
-
+	/**
+	 * Interface definition for a callback to be invoked when the internal
+	 * Matrix has changed for this View.
+	 * 
+	 * @author Chris Banes
+	 */
 	public static interface OnMatrixChangedListener {
-
+		/**
+		 * Callback for when the Matrix displaying the Drawable has changed.
+		 * This could be because the View's bounds have changed, or the user has
+		 * zoomed.
+		 * 
+		 * @param rect
+		 *            - Rectangle displaying the Drawable's new bounds.
+		 */
 		void onMatrixChanged(RectF rect);
 	}
 
-
+	/**
+	 * Interface definition for a callback to be invoked when the Scale is
+	 * tapped with a single tap.
+	 * 
+	 * @author Chris Banes
+	 */
 	public static interface OnScaleTapListener {
 
-
+		/**
+		 * A callback to receive where the user taps on a Scale. You will only
+		 * receive a callback if the user taps on the actual Scale, tapping on
+		 * 'whitespace' will be ignored.
+		 * 
+		 * @param view
+		 *            - View the user tapped.
+		 * @param x
+		 *            - where the user tapped from the of the Drawable, as
+		 *            percentage of the Drawable width.
+		 * @param y
+		 *            - where the user tapped from the top of the Drawable, as
+		 *            percentage of the Drawable height.
+		 */
 		void onScaleTap(View view, float x, float y);
 	}
 
-
+	/**
+	 * Interface definition for a callback to be invoked when the ImageView is
+	 * tapped with a single tap.
+	 * 
+	 * @author Chris Banes
+	 */
 	public static interface OnViewTapListener {
 
-
+		/**
+		 * A callback to receive where the user taps on a ImageView. You will
+		 * receive a callback if the user taps anywhere on the view, tapping on
+		 * 'whitespace' will not be ignored.
+		 * 
+		 * @param view
+		 *            - View the user tapped.
+		 * @param x
+		 *            - where the user tapped from the left of the View.
+		 * @param y
+		 *            - where the user tapped from the top of the View.
+		 */
 		void onViewTap(View view, float x, float y);
 	}
 
