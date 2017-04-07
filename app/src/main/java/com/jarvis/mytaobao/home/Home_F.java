@@ -25,20 +25,30 @@ import com.javis.ab.view.AbSlidingPlayView;
 import com.zxing.activity.CaptureActivity;
 
 /**
+ * 首页
  * @author http://yecaoly.taobao.com
  */
 public class Home_F extends Fragment {
+	//顶部标题栏
 	private TextView tv_top_title;
+	//分类的九宫格
 	private GridView gridView_classify;
+	//热门市场的九宫格
 	private GridView my_gridView_hot;
 	private Adapter_GridView adapter_GridView_classify;
 	private Adapter_GridView_hot adapter_GridView_hot;
+	//首页轮播
 	private AbSlidingPlayView viewPager;
+	//扫一扫
 	private ImageView iv_shao;
+	// 分类九宫格的资源文件
 	private int[] pic_path_classify = { R.drawable.menu_guide_1, R.drawable.menu_guide_2, R.drawable.menu_guide_3, R.drawable.menu_guide_4, R.drawable.menu_guide_5, R.drawable.menu_guide_6, R.drawable.menu_guide_7, R.drawable.menu_guide_8 };
+	// 热门市场的资源文件
 	private int[] pic_path_hot = { R.drawable.menu_1, R.drawable.menu_2, R.drawable.menu_3, R.drawable.menu_4, R.drawable.menu_5, R.drawable.menu_6 };
+	/**存储首页轮播的界面*/
 	private ArrayList<View> allListView;
-	private int[] resId = { R.drawable.pager_m5, R.drawable.pager_m3, R.drawable.pager_m2, R.drawable.pager_m1, R.drawable.pager_m4};
+	/**首页轮播的界面的资源*/
+	private int[] resId = { R.drawable.pager_m4, R.drawable.pager_m1, R.drawable.pager_m2, R.drawable.pager_m3, R.drawable.pager_m5};
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,7 +63,8 @@ public class Home_F extends Fragment {
 		iv_shao.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				Intent intent=new Intent(getActivity(),CaptureActivity.class);
+				//跳转到二维码扫描
+				Intent intent=new Intent(getActivity(),CaptureActivity.class); 
 				startActivity(intent);
 			}
 		});
@@ -61,6 +72,7 @@ public class Home_F extends Fragment {
 		tv_top_title.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
+				//挑战到宝贝搜索界面
 				Intent intent=new Intent(getActivity(),WareActivity.class);
 				startActivity(intent);
 			}
@@ -76,12 +88,15 @@ public class Home_F extends Fragment {
 		my_gridView_hot.setAdapter(adapter_GridView_hot);
 
 		viewPager = (AbSlidingPlayView) view.findViewById(R.id.viewPager_menu);
+		//设置播放方式为顺序播放
 		viewPager.setPlayType(1);
+		//设置播放间隔时间
 		viewPager.setSleepTime(3000);
 
 		gridView_classify.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				//挑战到宝贝搜索界面
 				Intent intent = new Intent(getActivity(), WareActivity.class);
 				startActivity(intent);
 			}
@@ -89,6 +104,7 @@ public class Home_F extends Fragment {
 		my_gridView_hot.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				//跳转到宝贝详情界面
 				Intent intent = new Intent(getActivity(), BabyActivity.class);
 				startActivity(intent);
 			}
@@ -106,6 +122,7 @@ public class Home_F extends Fragment {
 		allListView = new ArrayList<View>();
 
 		for (int i = 0; i < resId.length; i++) {
+			//导入ViewPager的布局
 			View view = LayoutInflater.from(getActivity()).inflate(R.layout.pic_item, null);
 			ImageView imageView = (ImageView) view.findViewById(R.id.pic_item);
 			imageView.setImageResource(resId[i]);
@@ -114,10 +131,12 @@ public class Home_F extends Fragment {
 		
 		
 		viewPager.addViews(allListView);
+		//开始轮播
 		viewPager.startPlay();
 		viewPager.setOnItemClickListener(new AbOnItemClickListener() {
 			@Override
 			public void onClick(int position) {
+				//跳转到详情界面
 				Intent intent = new Intent(getActivity(), BabyActivity.class);
 				startActivity(intent);
 			}

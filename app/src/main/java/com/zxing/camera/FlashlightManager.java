@@ -22,6 +22,18 @@ import android.util.Log;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+/**
+ * This class is used to activate the weak light on some camera phones (not flash)
+ * in order to illuminate surfaces for scanning. There is no official way to do this,
+ * but, classes which allow access to this function still exist on some devices.
+ * This therefore proceeds through a great deal of reflection.
+ *
+ * See <a href="http://almondmendoza.com/2009/01/05/changing-the-screen-brightness-programatically/">
+ * http://almondmendoza.com/2009/01/05/changing-the-screen-brightness-programatically/</a> and
+ * <a href="http://code.google.com/p/droidled/source/browse/trunk/src/com/droidled/demo/DroidLED.java">
+ * http://code.google.com/p/droidled/source/browse/trunk/src/com/droidled/demo/DroidLED.java</a>.
+ * Thanks to Ryan Alford for pointing out the availability of this class.
+ */
 final class FlashlightManager {
 
   private static final String TAG = FlashlightManager.class.getSimpleName();
@@ -42,6 +54,7 @@ final class FlashlightManager {
   }
 
   /**
+   * 控制相机闪光灯开关
    */
   //FIXME
   static void enableFlashlight() {
