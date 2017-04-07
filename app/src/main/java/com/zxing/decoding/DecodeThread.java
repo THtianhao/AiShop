@@ -53,7 +53,7 @@ final class DecodeThread extends Thread {
     try {
       handlerInitLatch.await();
     } catch (InterruptedException ie) {
-
+      // continue?
     }
     return handler;
   }

@@ -53,8 +53,8 @@ void initFromCameraParameters(Camera camera) {
     parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
     setFlash(parameters);
     setZoom(parameters);
-
-
+    //setSharpness(parameters);
+    //modify here
     camera.setDisplayOrientation(90);
     camera.setParameters(parameters);
   }
@@ -78,7 +78,7 @@ void initFromCameraParameters(Camera camera) {
   private static Point getCameraResolution(Camera.Parameters parameters, Point screenResolution) {
 
     String previewSizeValueString = parameters.get("preview-size-values");
-
+    // saw this on Xperia
     if (previewSizeValueString == null) {
       previewSizeValueString = parameters.get("preview-size-value");
     }
@@ -91,7 +91,7 @@ void initFromCameraParameters(Camera camera) {
     }
 
     if (cameraResolution == null) {
-
+      // Ensure that the camera resolution is a multiple of 8, as the screen may not be.
       cameraResolution = new Point(
           (screenResolution.x >> 3) << 3,
           (screenResolution.y >> 3) << 3);
@@ -161,17 +161,17 @@ void initFromCameraParameters(Camera camera) {
   }
 
   private void setFlash(Camera.Parameters parameters) {
-
-
-
-
-
-    if (Build.MODEL.contains("Behold II") && CameraManager.SDK_INT == 3) {
+    // FIXME: This is a hack to turn the flash off on the Samsung Galaxy.
+    // And this is a hack-hack to work around a different value on the Behold II
+    // Restrict Behold II check to Cupcake, per Samsung's advice
+    //if (Build.MODEL.contains("Behold II") &&
+    //    CameraManager.SDK_INT == Build.VERSION_CODES.CUPCAKE) {
+    if (Build.MODEL.contains("Behold II") && CameraManager.SDK_INT == 3) { // 3 = Cupcake
       parameters.set("flash-value", 1);
     } else {
       parameters.set("flash-value", 2);
     }
-
+    // This is the standard setting to turn the flash off that all devices should honor.
     parameters.set("flash-mode", "off");
   }
 
@@ -222,18 +222,18 @@ void initFromCameraParameters(Camera camera) {
           tenDesiredZoom -= tenDesiredZoom % tenZoomStep;
         }
       } catch (NumberFormatException nfe) {
-
+        // continue
       }
     }
 
-
-
+    // Set zoom. This helps encourage the user to pull back.
+    // Some devices like the Behold have a zoom parameter
     if (maxZoomString != null || motZoomValuesString != null) {
       parameters.set("zoom", String.valueOf(tenDesiredZoom / 10.0));
     }
 
-
-
+    // Most devices, like the Hero, appear to expose this zoom parameter.
+    // It takes on values like "27" which appears to mean 2.7x zoom
     if (takingPictureZoomMaxString != null) {
       parameters.set("taking-picture-zoom", tenDesiredZoom);
     }

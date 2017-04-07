@@ -38,11 +38,11 @@ public final class ViewfinderView extends View {
   private Collection<ResultPoint> possibleResultPoints;
   private Collection<ResultPoint> lastPossibleResultPoints;
 
-
+  // This constructor is used when the class is built from an XML resource.
   public ViewfinderView(Context context, AttributeSet attrs) {
     super(context, attrs);
 
-
+    // Initialize these once for performance rather than calling them every time in onDraw().
     paint = new Paint();
     Resources resources = getResources();
     maskColor = resources.getColor(R.color.viewfinder_mask);
@@ -63,7 +63,7 @@ public final class ViewfinderView extends View {
     int width = canvas.getWidth();
     int height = canvas.getHeight();
 
-
+    // Draw the exterior (i.e. outside the framing rect) darkened
     paint.setColor(resultBitmap != null ? resultColor : maskColor);
     canvas.drawRect(0, 0, width, frame.top, paint);
     canvas.drawRect(0, frame.top, frame.left, frame.bottom + 1, paint);
@@ -71,19 +71,19 @@ public final class ViewfinderView extends View {
     canvas.drawRect(0, frame.bottom + 1, width, height, paint);
 
     if (resultBitmap != null) {
-
+      // Draw the opaque result bitmap over the scanning rectangle
       paint.setAlpha(OPAQUE);
       canvas.drawBitmap(resultBitmap, frame.left, frame.top, paint);
     } else {
 
-
+      // Draw a two pixel solid black border inside the framing rect
       paint.setColor(frameColor);
       canvas.drawRect(frame.left, frame.top, frame.right + 1, frame.top + 2, paint);
       canvas.drawRect(frame.left, frame.top + 2, frame.left + 2, frame.bottom - 1, paint);
       canvas.drawRect(frame.right - 1, frame.top, frame.right + 1, frame.bottom - 1, paint);
       canvas.drawRect(frame.left, frame.bottom - 1, frame.right + 1, frame.bottom + 1, paint);
 
-
+      // Draw a red "laser scanner" line through the middle to show decoding is active
       paint.setColor(laserColor);
       paint.setAlpha(SCANNER_ALPHA[scannerAlpha]);
       scannerAlpha = (scannerAlpha + 1) % SCANNER_ALPHA.length;
@@ -111,8 +111,8 @@ public final class ViewfinderView extends View {
         }
       }
 
-
-
+      // Request another update at the animation interval, but only repaint the laser line,
+      // not the entire viewfinder mask.
       postInvalidateDelayed(ANIMATION_DELAY, frame.left, frame.top, frame.right, frame.bottom);
     }
   }

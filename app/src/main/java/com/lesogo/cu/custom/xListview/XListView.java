@@ -19,9 +19,9 @@ import com.jarvis.mytaobaotest.R;
 
 public class XListView extends ListView implements OnScrollListener {
 
-	private float mLastY = -1;
-	private Scroller mScroller;
-	private OnScrollListener mScrollListener;
+	private float mLastY = -1; // save event y
+	private Scroller mScroller; // used for scroll back
+	private OnScrollListener mScrollListener; // user's scroll listener
 
 	// the interface to trigger refresh and load more.
 	private IXListViewListener mListViewListener;
@@ -32,9 +32,9 @@ public class XListView extends ListView implements OnScrollListener {
 	// when disable pull refresh.
 	private RelativeLayout mHeaderViewContent;
 	private TextView mHeaderTimeView;
-	private int mHeaderViewHeight;
+	private int mHeaderViewHeight; // header view's height
 	private boolean mEnablePullRefresh = true;
-	private boolean mPullRefreshing = false;
+	private boolean mPullRefreshing = false; // is refreashing.
 
 	// -- footer view
 	private XListViewFooter mFooterView;
@@ -50,11 +50,11 @@ public class XListView extends ListView implements OnScrollListener {
 	private final static int SCROLLBACK_HEADER = 0;
 	private final static int SCROLLBACK_FOOTER = 1;
 
-	private final static int SCROLL_DURATION = 400;
-	private final static int PULL_LOAD_MORE_DELTA = 50;
+	private final static int SCROLL_DURATION = 400; // scroll back duration
+	private final static int PULL_LOAD_MORE_DELTA = 50; // when pull up >= 50px
 														// at bottom, trigger
 														// load more.
-	private final static float OFFSET_RADIO = 1.8f;
+	private final static float OFFSET_RADIO = 1.8f; // support iOS like pull
 													// feature.
 
 
@@ -112,7 +112,7 @@ public class XListView extends ListView implements OnScrollListener {
 
 	public void setPullRefreshEnable(boolean enable) {
 		mEnablePullRefresh = enable;
-		if (!mEnablePullRefresh) {
+		if (!mEnablePullRefresh) { // disable, hide the content
 			mHeaderViewContent.setVisibility(View.INVISIBLE);
 		} else {
 			mHeaderViewContent.setVisibility(View.VISIBLE);
@@ -167,27 +167,27 @@ public class XListView extends ListView implements OnScrollListener {
 
 	private void updateHeaderHeight(float delta) {
 		mHeaderView.setVisiableHeight((int) delta + mHeaderView.getVisiableHeight());
-		if (mEnablePullRefresh && !mPullRefreshing) {
+		if (mEnablePullRefresh && !mPullRefreshing) { // δˢ״̬¼ͷ
 			if (mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
 				mHeaderView.setState(XListViewHeader.STATE_READY);
 			} else {
 				mHeaderView.setState(XListViewHeader.STATE_NORMAL);
 			}
 		}
-		setSelection(0);
+		setSelection(0); // scroll to top each time
 	}
 
 
 	private void resetHeaderHeight() {
 		int height = mHeaderView.getVisiableHeight();
-		if (height == 0)
+		if (height == 0) // not visible.
 			return;
 		// refreshing and header isn't shown fully. do nothing.
 		if (mPullRefreshing && height <= mHeaderViewHeight) {
 			return;
 		}
 		//Ĭϵĳʼͷ߶
-		int finalHeight = 40;
+		int finalHeight = 40; // default: scroll back to dismiss header.
 		// is refreshing, just scroll back to show all the header.
 		if (mPullRefreshing && height > mHeaderViewHeight) {
 			finalHeight = mHeaderViewHeight;
@@ -201,7 +201,7 @@ public class XListView extends ListView implements OnScrollListener {
 	private void updateFooterHeight(float delta) {
 		int height = mFooterView.getBottomMargin() + (int) delta;
 		if (mEnablePullLoad && !mPullLoading) {
-			if (height > PULL_LOAD_MORE_DELTA) {
+			if (height > PULL_LOAD_MORE_DELTA) { // height enough to invoke load
 													// more.
 				mFooterView.setState(XListViewFooter.STATE_READY);
 			} else {
@@ -210,7 +210,7 @@ public class XListView extends ListView implements OnScrollListener {
 		}
 		mFooterView.setBottomMargin(height);
 
-		// setSelection(mTotalItemCount - 1);
+		// setSelection(mTotalItemCount - 1); // scroll to bottom
 	}
 
 	private void resetFooterHeight() {
@@ -254,7 +254,7 @@ public class XListView extends ListView implements OnScrollListener {
 			}
 			break;
 		default:
-			mLastY = -1;
+			mLastY = -1; // reset
 			if (getFirstVisiblePosition() == 0) {
 				// invoke refresh
 				if (mEnablePullRefresh && mHeaderView.getVisiableHeight() > mHeaderViewHeight) {

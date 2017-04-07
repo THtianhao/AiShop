@@ -48,8 +48,8 @@ public final class PlanarYUVLuminanceSource extends LuminanceSource {
     int width = getWidth();
     int height = getHeight();
 
-
-
+    // If the caller asks for the entire underlying image, save the copy and give them the
+    // original data. The docs specifically warn that result.length must be ignored.
     if (width == dataWidth && height == dataHeight) {
       return yuvData;
     }
@@ -58,13 +58,13 @@ public final class PlanarYUVLuminanceSource extends LuminanceSource {
     byte[] matrix = new byte[area];
     int inputOffset = top * dataWidth + left;
 
-
+    // If the width matches the full width of the underlying data, perform a single copy.
     if (width == dataWidth) {
       System.arraycopy(yuvData, inputOffset, matrix, 0, area);
       return matrix;
     }
 
-
+    // Otherwise copy one cropped row at a time.
     byte[] yuv = yuvData;
     for (int y = 0; y < height; y++) {
       int outputOffset = y * width;
