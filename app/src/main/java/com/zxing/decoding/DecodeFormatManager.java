@@ -67,7 +67,7 @@ final class DecodeFormatManager {
         }
         return formats;
       } catch (IllegalArgumentException iae) {
-        // ignore it then
+
       }
     }
     if (decodeMode != null) {

@@ -42,7 +42,7 @@ public final class CaptureActivityHandler extends Handler {
         new ViewfinderResultPointCallback(activity.getViewfinderView()));
     decodeThread.start();
     state = State.SUCCESS;
-    // Start ourselves capturing previews and decoding.
+
     CameraManager.get().startPreview();
     restartPreviewAndDecode();
   }
@@ -51,9 +51,9 @@ public final class CaptureActivityHandler extends Handler {
   public void handleMessage(Message message) {
     switch (message.what) {
       case R.id.auto_focus:
-        //Log.d(TAG, "Got auto-focus message");
-        // When one auto focus pass finishes, start another. This is the closest thing to
-        // continuous AF. It does seem to hunt a bit, but I'm not sure what else to do.
+
+
+
         if (state == State.PREVIEW) {
           CameraManager.get().requestAutoFocus(this, R.id.auto_focus);
         }
@@ -74,7 +74,7 @@ public final class CaptureActivityHandler extends Handler {
         activity.handleDecode((Result) message.obj, barcode);//锟斤拷锟截斤拷锟
         break;
       case R.id.decode_failed:
-        // We're decoding as fast as possible, so when one decode fails, start another.
+
         state = State.PREVIEW;
         CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
         break;
@@ -101,10 +101,10 @@ public final class CaptureActivityHandler extends Handler {
     try {
       decodeThread.join();
     } catch (InterruptedException e) {
-      // continue
+
     }
 
-    // Be absolutely sure we don't send any queued up messages
+
     removeMessages(R.id.decode_succeeded);
     removeMessages(R.id.decode_failed);
   }

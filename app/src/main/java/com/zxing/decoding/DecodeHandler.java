@@ -37,7 +37,7 @@ final class DecodeHandler extends Handler {
   public void handleMessage(Message message) {
     switch (message.what) {
       case R.id.decode:
-        //Log.d(TAG, "Got decode message");
+
         decode((byte[]) message.obj, message.arg1, message.arg2);
         break;
       case R.id.quit:
@@ -51,13 +51,13 @@ final class DecodeHandler extends Handler {
     long start = System.currentTimeMillis();
     Result rawResult = null;
     
-    //modify here
+
     byte[] rotatedData = new byte[data.length];
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++)
             rotatedData[x * height + height - y - 1] = data[x + y * width];
     }
-    int tmp = width; // Here we are swapping, that's the difference to #11
+    int tmp = width;
     width = height;
     height = tmp;
     
@@ -66,7 +66,7 @@ final class DecodeHandler extends Handler {
     try {
       rawResult = multiFormatReader.decodeWithState(bitmap);
     } catch (ReaderException re) {
-      // continue
+
     } finally {
       multiFormatReader.reset();
     }
@@ -78,7 +78,7 @@ final class DecodeHandler extends Handler {
       Bundle bundle = new Bundle();
       bundle.putParcelable(DecodeThread.BARCODE_BITMAP, source.renderCroppedGreyscaleBitmap());
       message.setData(bundle);
-      //Log.d(TAG, "Sending decode succeeded message...");
+
       message.sendToTarget();
     } else {
       Message message = Message.obtain(activity.getHandler(), R.id.decode_failed);

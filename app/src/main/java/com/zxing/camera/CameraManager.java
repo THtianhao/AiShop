@@ -27,13 +27,13 @@ public final class CameraManager {
 
   private static CameraManager cameraManager;
 
-  static final int SDK_INT; // Later we can use Build.VERSION.SDK_INT
+  static final int SDK_INT;
   static {
     int sdkInt;
     try {
       sdkInt = Integer.parseInt(Build.VERSION.SDK);
     } catch (NumberFormatException nfe) {
-      // Just to be safe
+
       sdkInt = 10000;
     }
     SDK_INT = sdkInt;
@@ -69,12 +69,12 @@ public final class CameraManager {
     this.context = context;
     this.configManager = new CameraConfigurationManager(context);
 
-    // Camera.setOneShotPreviewCallback() has a race condition in Cupcake, so we use the older
-    // Camera.setPreviewCallback() on 1.5 and earlier. For Donut and later, we need to use
-    // the more efficient one shot callback, as the older one can swamp the system and cause it
-    // to run out of memory. We can't use SDK_INT because it was introduced in the Donut SDK.
-    //useOneShotPreviewCallback = Integer.parseInt(Build.VERSION.SDK) > Build.VERSION_CODES.CUPCAKE;
-    useOneShotPreviewCallback = Integer.parseInt(Build.VERSION.SDK) > 3; // 3 = Cupcake
+
+
+
+
+
+    useOneShotPreviewCallback = Integer.parseInt(Build.VERSION.SDK) > 3;
 
     previewCallback = new PreviewCallback(configManager, useOneShotPreviewCallback);
     autoFocusCallback = new AutoFocusCallback();
@@ -95,8 +95,8 @@ public final class CameraManager {
       }
       configManager.setDesiredCameraParameters(camera);
 
-      //FIXME
- //     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+
 //      if (prefs.getBoolean(PreferencesActivity.KEY_FRONT_LIGHT, false)) {
 //        FlashlightManager.enableFlashlight();
 //      }
@@ -150,7 +150,7 @@ public final class CameraManager {
   public void requestAutoFocus(Handler handler, int message) {
     if (camera != null && previewing) {
       autoFocusCallback.setHandler(handler, message);
-      //Log.d(TAG, "Requesting auto-focus callback");
+
       camera.autoFocus(autoFocusCallback);
     }
   }
@@ -188,7 +188,7 @@ public final class CameraManager {
       Rect rect = new Rect(getFramingRect());
       Point cameraResolution = configManager.getCameraResolution();
       Point screenResolution = configManager.getScreenResolution();
-      //modify here
+
 //      rect.left = rect.left * cameraResolution.x / screenResolution.x;
 //      rect.right = rect.right * cameraResolution.x / screenResolution.x;
 //      rect.top = rect.top * cameraResolution.y / screenResolution.y;
@@ -211,17 +211,17 @@ public final class CameraManager {
     int previewFormat = configManager.getPreviewFormat();
     String previewFormatString = configManager.getPreviewFormatString();
     switch (previewFormat) {
-      // This is the standard Android format which all devices are REQUIRED to support.
-      // In theory, it's the only one we should ever care about.
+
+
       case PixelFormat.YCbCr_420_SP:
-      // This format has never been seen in the wild, but is compatible as we only care
-      // about the Y channel, so allow it.
+
+
       case PixelFormat.YCbCr_422_SP:
         return new PlanarYUVLuminanceSource(data, width, height, rect.left, rect.top,
             rect.width(), rect.height());
       default:
-        // The Samsung Moment incorrectly uses this variant instead of the 'sp' version.
-        // Fortunately, it too has all the Y data up front, so we can read it.
+
+
         if ("yuv420p".equals(previewFormatString)) {
           return new PlanarYUVLuminanceSource(data, width, height, rect.left, rect.top,
             rect.width(), rect.height());
