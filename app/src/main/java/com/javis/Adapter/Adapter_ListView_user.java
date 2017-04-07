@@ -51,23 +51,11 @@ private ArrayList<HashMap<String, Object>> arrayList;
 		if (currentView==null) {
 			holderView=new HolderView();
 			currentView=LayoutInflater.from(context).inflate(R.layout.adapter_listview_detail, null);
-//			holderView.iv_pic=(ImageView) currentView.findViewById(R.id.iv_adapter_list_pic);
-//			holderView.tv_name=(TextView) currentView.findViewById(R.id.name);
-//			holderView.tv_price=(TextView) currentView.findViewById(R.id.price);
-//			holderView.tv_sale_num=(TextView) currentView.findViewById(R.id.sale_num);
 			currentView.setTag(holderView);
 		}else {
 			holderView=(HolderView) currentView.getTag();
 		}
-		
-//		ImageListener listener= ImageLoader.getImageListener(holderView.iv_pic, R.drawable.ic_launcher,  R.drawable.ic_launcher);
-//		CU_VolleyTool.getInstance(context).getmImageLoader().get("http://192.168.0.111:3000/taoBao/img/"+arrayList.get(position).get("pic"), listener);
-//		
-//		
-//		holderView.tv_name.setText(arrayList.get(position).get("name").toString());
-//		holderView.tv_price.setText("￥"+arrayList.get(position).get("price").toString()+"元");
-//		holderView.tv_sale_num.setText("月销量:"+arrayList.get(position).get("sale_num").toString()+"件     "+arrayList.get(position).get("address").toString());
-		
+
 		return currentView;
 	}
 	
