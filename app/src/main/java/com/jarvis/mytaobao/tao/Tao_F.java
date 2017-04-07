@@ -15,7 +15,6 @@ import com.jarvis.mytaobaotest.R;
 import com.javis.Adapter.Adapter_ListView_tao;
 
 /**
- * Î¢ÌÔÖ÷½çÃæ
  * @author http://yecaoly.taobao.com
  *
  */
