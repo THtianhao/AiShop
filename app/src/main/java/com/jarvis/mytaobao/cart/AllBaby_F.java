@@ -36,7 +36,7 @@ public class AllBaby_F extends Fragment implements IBtnCallListener, onCheckedCh
     private ListView listView_cart;
     private CheckBox cb_cart_all;
     private Adapter_ListView_cart adapter;
-    private String str_del = "����(0)";
+    private String str_del = "(0)";
     private boolean[] is_choice;
 
     public AllBaby_F(String del) {
@@ -148,7 +148,7 @@ public class AllBaby_F extends Fragment implements IBtnCallListener, onCheckedCh
         }
         int num_choice = 0;
         for (int i = 0; i < Data.arrayList_cart.size(); i++) {
-            if (null != listView_cart.getChildAt(i) && ((CheckBox) (listView_cart.getChildAt(i)).findViewById(R.id.cb_choice)).isChecked()) {// �б���ѡ��״̬������+1
+            if (null != listView_cart.getChildAt(i) && ((CheckBox) (listView_cart.getChildAt(i)).findViewById(R.id.cb_choice)).isChecked()) {// б״̬+1
                 num_choice += 1;
                 is_choice[i] = true;
             }
@@ -159,9 +159,9 @@ public class AllBaby_F extends Fragment implements IBtnCallListener, onCheckedCh
             cb_cart_all.setChecked(false);
         }
 
-        tv_cart_Allprice.setText("�ϼƣ���" + Data.Allprice_cart + "");
+        tv_cart_Allprice.setText("ϼƣ" + Data.Allprice_cart + "");
 
-        System.out.println("ѡ���λ��--->" + position);
+        System.out.println("--->" + position);
 
     }
 
@@ -173,7 +173,7 @@ public class AllBaby_F extends Fragment implements IBtnCallListener, onCheckedCh
                 break;
             case R.id.tv_cart_buy_or_del:
                 boolean[] is_choice_copy = is_choice;
-                if (tv_cart_buy_Ordel.getText().toString().equals("ɾ��")) {
+                if (tv_cart_buy_Ordel.getText().toString().equals("ɾ")) {
 
                     if (Data.arrayList_cart.size() != 0) {
                         for (int i = is_choice_copy.length - 1; i >= 0; i--) {
@@ -192,10 +192,10 @@ public class AllBaby_F extends Fragment implements IBtnCallListener, onCheckedCh
 
                     adapter.notifyDataSetChanged();
                     is_choice = new boolean[Data.arrayList_cart.size()];
-                    System.out.println("��ʱ�ĳ���---->" + is_choice.length);
+                    System.out.println("ĳ---->" + is_choice.length);
                 } else {
 
-                    Toast.makeText(getActivity(), "��ʱ�޷�����", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "޷", Toast.LENGTH_SHORT).show();
                 }
 
                 break;
@@ -206,7 +206,7 @@ public class AllBaby_F extends Fragment implements IBtnCallListener, onCheckedCh
     }
 
 
-    /***/
+
     public static boolean[] deleteByIndex(boolean[] array, int index) {
         boolean[] newArray = new boolean[array.length - 1];
         for (int i = 0; i < newArray.length; i++) {

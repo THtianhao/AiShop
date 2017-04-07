@@ -22,11 +22,7 @@ import com.jarvis.mytaobao.user.User_F;
 import com.jarvis.mytaobaotest.R;
 import com.javis.mytools.IBtnCallListener;
 
-/**
- *
- * @author http://yecaoly.taobao.com
- * 
- */
+
 public class Main_FA extends FragmentActivity implements OnClickListener, IBtnCallListener {
 
 	private ImageView[] bt_menu = new ImageView[3];
@@ -214,8 +210,7 @@ public class Main_FA extends FragmentActivity implements OnClickListener, IBtnCa
 		super.onAttachFragment(fragment);
 	}
 
-	/**
-	 */
+
 	@Override
 	public void transferMsg() {
 		if (home_F == null) {

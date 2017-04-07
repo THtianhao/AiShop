@@ -1,18 +1,4 @@
-/*
- * Copyright (C) 2010 ZXing authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package com.zxing.camera;
 
@@ -45,9 +31,7 @@ final class CameraConfigurationManager {
     this.context = context;
   }
 
-  /**
-   * Reads, one time, values from the camera that are needed by the app.
-   */
+
   @SuppressWarnings("deprecation")
 void initFromCameraParameters(Camera camera) {
     Camera.Parameters parameters = camera.getParameters();
@@ -62,12 +46,7 @@ void initFromCameraParameters(Camera camera) {
     Log.d(TAG, "Camera resolution: " + screenResolution);
   }
 
-  /**
-   * Sets the camera up to take preview images which are used for both preview and decoding.
-   * We detect the preview format here so that buildLuminanceSource() can build an appropriate
-   * LuminanceSource subclass. In the future we may want to force YUV420SP as it's the smallest,
-   * and the planar Y can be used for barcode scanning without a copy in some cases.
-   */
+
   void setDesiredCameraParameters(Camera camera) {
     Camera.Parameters parameters = camera.getParameters();
     Log.d(TAG, "Setting preview size: " + cameraResolution);

@@ -1,11 +1,4 @@
-/**
- * @file XListView.java
- * @package me.maxwin.view
- * @create Mar 18, 2012 6:28:41 PM
- * @author Maxwin
- * @description An ListView support (a) Pull down to refresh, (b) Pull up to load more.
- * 		Implement IXListViewListener, and see stopRefresh() / stopLoadMore().
- */
+
 package com.lesogo.cu.custom.xListview;
 
 import android.content.Context;
@@ -64,9 +57,7 @@ public class XListView extends ListView implements OnScrollListener {
 	private final static float OFFSET_RADIO = 1.8f; // support iOS like pull
 													// feature.
 
-	/**
-	 * @param context
-	 */
+
 	public XListView(Context context) {
 		super(context);
 		initWithContext(context);
@@ -118,11 +109,7 @@ public class XListView extends ListView implements OnScrollListener {
 		super.setAdapter(adapter);
 	}
 
-	/**
-	 * enable or disable pull down refresh feature.
-	 * 
-	 * @param enable
-	 */
+
 	public void setPullRefreshEnable(boolean enable) {
 		mEnablePullRefresh = enable;
 		if (!mEnablePullRefresh) { // disable, hide the content
@@ -132,11 +119,7 @@ public class XListView extends ListView implements OnScrollListener {
 		}
 	}
 
-	/**
-	 * enable or disable pull up load more feature.
-	 * 
-	 * @param enable
-	 */
+
 	public void setPullLoadEnable(boolean enable) {
 		mEnablePullLoad = enable;
 		if (!mEnablePullLoad) {
@@ -154,9 +137,7 @@ public class XListView extends ListView implements OnScrollListener {
 		}
 	}
 
-	/**
-	 * stop refresh, reset header view.
-	 */
+
 	public void stopRefresh() {
 		if (mPullRefreshing == true) {
 			mPullRefreshing = false;
@@ -164,9 +145,7 @@ public class XListView extends ListView implements OnScrollListener {
 		}
 	}
 
-	/**
-	 * stop load more, reset footer view.
-	 */
+
 	public void stopLoadMore() {
 		if (mPullLoading == true) {
 			mPullLoading = false;
@@ -174,11 +153,7 @@ public class XListView extends ListView implements OnScrollListener {
 		}
 	}
 
-	/**
-	 * set last refresh time
-	 * 
-	 * @param time
-	 */
+
 	public void setRefreshTime(String time) {
 		mHeaderTimeView.setText(time);
 	}
@@ -192,7 +167,7 @@ public class XListView extends ListView implements OnScrollListener {
 
 	private void updateHeaderHeight(float delta) {
 		mHeaderView.setVisiableHeight((int) delta + mHeaderView.getVisiableHeight());
-		if (mEnablePullRefresh && !mPullRefreshing) { // Î´´¦ÓÚË¢ÐÂ×´Ì¬£¬¸üÐÂ¼ýÍ·
+		if (mEnablePullRefresh && !mPullRefreshing) { // Î´Ë¢×´Ì¬Â¼Í·
 			if (mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
 				mHeaderView.setState(XListViewHeader.STATE_READY);
 			} else {
@@ -202,9 +177,7 @@ public class XListView extends ListView implements OnScrollListener {
 		setSelection(0); // scroll to top each time
 	}
 
-	/**
-	 * reset header view's height.
-	 */
+
 	private void resetHeaderHeight() {
 		int height = mHeaderView.getVisiableHeight();
 		if (height == 0) // not visible.
@@ -213,7 +186,7 @@ public class XListView extends ListView implements OnScrollListener {
 		if (mPullRefreshing && height <= mHeaderViewHeight) {
 			return;
 		}
-		//Ä¬ÈÏµÄ³õÊ¼»¯Í·²¿¸ß¶È
+		//Ä¬ÏµÄ³Ê¼Í·ß¶
 		int finalHeight = 40; // default: scroll back to dismiss header.
 		// is refreshing, just scroll back to show all the header.
 		if (mPullRefreshing && height > mHeaderViewHeight) {
@@ -270,7 +243,7 @@ public class XListView extends ListView implements OnScrollListener {
 		case MotionEvent.ACTION_MOVE:
 			final float deltaY = ev.getRawY() - mLastY;
 			mLastY = ev.getRawY();
-			System.out.println("Êý¾Ý¼à²â£º" + getFirstVisiblePosition() + "---->" + getLastVisiblePosition());
+			System.out.println("Ý¼â£º" + getFirstVisiblePosition() + "---->" + getLastVisiblePosition());
 			if (getFirstVisiblePosition() == 0 && (mHeaderView.getVisiableHeight() > 0 || deltaY > 0)) {
 				// the first item is showing, header has shown or pull down.
 				updateHeaderHeight(deltaY / OFFSET_RADIO);
@@ -344,17 +317,12 @@ public class XListView extends ListView implements OnScrollListener {
 		mListViewListener = l;
 	}
 
-	/**
-	 * you can listen ListView.OnScrollListener or this one. it will invoke
-	 * onXScrolling when header/footer scroll back.
-	 */
+
 	public interface OnXScrollListener extends OnScrollListener {
 		public void onXScrolling(View view);
 	}
 
-	/**
-	 * implements this interface to get refresh/load more event.
-	 */
+
 	public interface IXListViewListener {
 		public void onRefresh();
 

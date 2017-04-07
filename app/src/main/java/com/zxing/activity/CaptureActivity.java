@@ -29,10 +29,7 @@ import com.zxing.camera.CameraManager;
 import com.zxing.decoding.CaptureActivityHandler;
 import com.zxing.decoding.InactivityTimer;
 import com.zxing.view.ViewfinderView;
-/**
- * Initial the camera
- * @author Ryan.Tang
- */
+
 public class CaptureActivity extends Activity implements Callback {
 
 	private CaptureActivityHandler handler;
@@ -47,7 +44,7 @@ public class CaptureActivity extends Activity implements Callback {
 	private boolean vibrate;
 	private Button cancelScanButton;
 
-	/** Called when the activity is first created. */
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -110,11 +107,7 @@ public class CaptureActivity extends Activity implements Callback {
 		super.onDestroy();
 	}
 	
-	/**
-	 * Handler scan result
-	 * @param result
-	 * @param barcode
-	 */
+
 	public void handleDecode(Result result, Bitmap barcode) {
 		inactivityTimer.onActivity();
 		playBeepSoundAndVibrate();
@@ -217,9 +210,7 @@ public class CaptureActivity extends Activity implements Callback {
 		}
 	}
 
-	/**
-	 * When the beep has finished playing, rewind to queue up another one.
-	 */
+
 	private final OnCompletionListener beepListener = new OnCompletionListener() {
 		public void onCompletion(MediaPlayer mediaPlayer) {
 			mediaPlayer.seekTo(0);

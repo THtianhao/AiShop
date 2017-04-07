@@ -65,8 +65,8 @@ private ArrayList<HashMap<String, Object>> arrayList;
 //		
 //		
 //		holderView.tv_name.setText(arrayList.get(position).get("name").toString());
-//		holderView.tv_price.setText("￥"+arrayList.get(position).get("price").toString()+"元");
-//		holderView.tv_sale_num.setText("月销量:"+arrayList.get(position).get("sale_num").toString()+"件     "+arrayList.get(position).get("address").toString());
+//		holderView.tv_price.setText(""+arrayList.get(position).get("price").toString()+"元");
+//		holderView.tv_sale_num.setText(":"+arrayList.get(position).get("sale_num").toString()+"     "+arrayList.get(position).get("address").toString());
 		
 		return currentView;
 	}

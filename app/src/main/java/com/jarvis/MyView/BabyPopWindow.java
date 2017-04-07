@@ -23,11 +23,7 @@ import android.widget.PopupWindow.OnDismissListener;
 import android.widget.TextView;
 
 
-/**
- * 宝贝详情界面的弹窗
- * @author http://yecaoly.taobao.com
- *
- */
+
 @SuppressLint("CommitPrefEdits")
 public class BabyPopWindow implements OnDismissListener, OnClickListener {
 	private TextView pop_choice_16g,pop_choice_32g,pop_choice_16m,pop_choice_32m,pop_choice_black,pop_choice_white,pop_add,pop_reduce,pop_num,pop_ok;
@@ -37,12 +33,12 @@ public class BabyPopWindow implements OnDismissListener, OnClickListener {
 	private OnItemClickListener listener;
 	private final int ADDORREDUCE=1;
 	private Context context;
-	/**保存选择的颜色的数据*/
+
 	private String str_color="";
-	/**保存选择的类型的数据*/
+
 	private String str_type="";
 	
-	
+
 	public BabyPopWindow(Context context) {
 		this.context=context;
 		View view=LayoutInflater.from(context).inflate(R.layout.adapter_popwindow, null);
@@ -68,37 +64,37 @@ public class BabyPopWindow implements OnDismissListener, OnClickListener {
 		pop_reduce.setOnClickListener(this);
 		pop_ok.setOnClickListener(this);
 		pop_del.setOnClickListener(this);
-		
+
 		
 		
 		popupWindow=new PopupWindow(view, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		//设置popwindow的动画效果
+		//popwindow效
 		popupWindow.setAnimationStyle(R.style.popWindow_anim_style);
 		popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-		popupWindow.setOnDismissListener(this);// 当popWindow消失时的监听
+		popupWindow.setOnDismissListener(this);// popWindow
 	}
 	
 	
 	
 	
 	public interface OnItemClickListener{
-		/** 设置点击确认按钮时监听接口 */
+
 		public void onClickOKPop();
 	}
 
-	/**设置监听*/
+
 	public void setOnItemClickListener(OnItemClickListener listener){
 		this.listener=listener;
 	}
 	
 	
-	// 当popWindow消失时响应
+	// popWindow应
 	@Override
 	public void onDismiss() {
 		
 	}
 	
-	/**弹窗显示的位置*/  
+
 	public void showAsDropDown(View parent){
 		popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
 		popupWindow.setFocusable(true);
@@ -106,7 +102,7 @@ public class BabyPopWindow implements OnDismissListener, OnClickListener {
 		popupWindow.update();
 	}
 	
-	/**消除弹窗*/
+
 	public void dissmiss(){
 		popupWindow.dismiss();
 	}
@@ -169,7 +165,7 @@ public class BabyPopWindow implements OnDismissListener, OnClickListener {
 				String num_add=Integer.valueOf(pop_num.getText().toString())+ADDORREDUCE+"";
 				pop_num.setText(num_add);
 			}else {
-				Toast.makeText(context, "不能超过最大产品数量", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "艹品", Toast.LENGTH_SHORT).show();
 			}
 			
 			break;
@@ -178,7 +174,7 @@ public class BabyPopWindow implements OnDismissListener, OnClickListener {
 				String num_reduce=Integer.valueOf(pop_num.getText().toString())-ADDORREDUCE+"";
 				pop_num.setText(num_reduce);
 			}else {
-				Toast.makeText(context, "购买数量不能低于1件", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "艿1", Toast.LENGTH_SHORT).show();
 			}
 			break;
 		case R.id.pop_del:
@@ -189,9 +185,9 @@ public class BabyPopWindow implements OnDismissListener, OnClickListener {
 		case R.id.pop_ok:
 			listener.onClickOKPop();
 			if (str_color.equals("")) {
-				Toast.makeText(context, "亲，你还没有选择颜色哟~", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
 			}else if (str_type.equals("")) {
-				Toast.makeText(context, "亲，你还没有选择类型哟~",Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "",Toast.LENGTH_SHORT).show();
 			}else {
 				HashMap<String, Object> allHashMap=new HashMap<String,Object>();
 				
@@ -211,7 +207,7 @@ public class BabyPopWindow implements OnDismissListener, OnClickListener {
 			break;
 		}
 	}
-	/**保存购物车的数据*/
+
 	private void setSaveData(){
 		SharedPreferences sp=context.getSharedPreferences("SAVE_CART", Context.MODE_PRIVATE);
 		Editor editor=sp.edit();
