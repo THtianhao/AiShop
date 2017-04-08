@@ -120,7 +120,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="特色书"
+                    android:text="花好"
                     android:textColor="@color/tv_Black"
                     android:textSize="20sp" />
 
@@ -203,7 +203,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="热门好书"
+                    android:text="热门花型"
                     android:textColor="@color/tv_Black"
                     android:textSize="20sp" />
 
