@@ -79,21 +79,21 @@ public class User_F extends Fragment implements OnClickListener {
 	@Override
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
-//		case R.id.ll_user_life:
-//			//����ι��ֽ���
-//			Intent intent1=new Intent(getActivity(),User_life.class);
-//			startActivity(intent1);
-//			break;
-//		case R.id.ll_user_members:
-//			//����ι��ֽ���
-//			Intent intent2=new Intent(getActivity(),User_life.class);
-//			startActivity(intent2);
-//			break;
-//		case R.id.ll_user_store:
-//			//����ι��ֽ���
-//			Intent intent3=new Intent(getActivity(),User_life.class);
-//			startActivity(intent3);
-//			break;
+		case R.id.ll_user_life:
+			//����ι��ֽ���
+			Intent intent1=new Intent(getActivity(),User_life.class);
+			startActivity(intent1);
+			break;
+		case R.id.ll_user_members:
+			//����ι��ֽ���
+			Intent intent2=new Intent(getActivity(),User_life.class);
+			startActivity(intent2);
+			break;
+		case R.id.ll_user_store:
+			//����ι��ֽ���
+			Intent intent3=new Intent(getActivity(),User_life.class);
+			startActivity(intent3);
+			break;
 
 		default:
 			break;
