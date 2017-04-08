@@ -6,17 +6,17 @@ p3= cut -b 3 /home/ubuntu/thefile.txt
 p4= cut -b 4 /home/ubuntu/thefile.txt
 echo $p1 $p2 $p3 $p4
 
-if [ $p1 = 1 ];then
+if [ $p1 == 1 ];then
     echo '1 success'
     myvar="my_gridview"
     find ./app/src/ -name 'home_f.xml' | xargs perl -pi -e 's|android:id=\"@\+id\/'$myvar'\"|android:id="@\+id/'$myvar'" android:visibility="gone"|g'
 fi
-if [ $p2 = 1 ];then
+if [ $p2 == 1 ];then
     echo '2 success'
     myvar="my_linearlayout1"
     find ./app/src/ -name 'home_f.xml' | xargs perl -pi -e 's|android:id=\"@\+id\/'$myvar'\"|android:id="@\+id/'$myvar'" android:visibility="gone"|g'
 fi
-if [ $p3 = 1 ];then
+if [ $p3 == 1 ];then
     echo '3 success'
     myvar="my_linearlayout2"
     find ./app/src/ -name 'home_f.xml' | xargs perl -pi -e 's|android:id=\"@\+id\/'$myvar'\"|android:id="@\+id/'$myvar'" android:visibility="gone"|g'
